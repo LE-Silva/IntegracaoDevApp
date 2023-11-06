@@ -1,0 +1,27 @@
+﻿namespace MyManagementApp.Data
+{
+    public class DataConfig
+    {
+        public string Server { get; private set; }
+        public string User { get; private set; }
+        public string Password { get; private set; }
+        public string DataBase { get; private set; }
+
+        public string ConnectionString { get { 
+            return $@"Server={Server};Database={DataBase};User Id={User};Password={Password}";
+         } }
+
+        public static class Factory {
+            public static DataConfig GetConnectionConfig() 
+            {
+                return new DataConfig() {
+                    DataBase = "SPT_LEJ_DbNutAg",
+                    Server = "172.16.3.50",
+                    User = "sa",
+                    Password = "dp"                
+                };
+            }
+        }
+
+    }
+}
