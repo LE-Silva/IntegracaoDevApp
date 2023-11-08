@@ -9,7 +9,7 @@
 
         public string ConnectionString { get { 
             return $@"Server={Server};Database={DataBase};User Id={User};Password={Password}";
-         } }
+        } }
 
         public static class Factory {
             public static DataConfig GetConnectionConfig() 

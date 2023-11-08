@@ -1,7 +1,8 @@
 ﻿using IntegracaoDevApp.Data.Repositories;
-using IntegracaoDevApp.Domain.Models;
+using IntegracaoDevApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,28 @@ namespace IntegracaoDevApp.Application.Services
     public class ClienteAppService
     {
         ClienteRepository clienteRepository = new ClienteRepository();
-        public ClienteAppService() { }
+
+        public ClienteAppService() { clienteRepository = new ClienteRepository(); }
 
         public bool Create(Cliente cliente)
         {
             return clienteRepository.Create(cliente);
+        }
+        public bool Delete(string cdcliente)
+        {
+            return clienteRepository.Delete(cdcliente);
+        }
+        public bool Update(Cliente cliente)
+        {
+            return clienteRepository.Update(cliente);
+        }
+        public DataTable GetCliente(string cdcliente)
+        {
+            return clienteRepository.GetClienteById(cdcliente);
+        }
+        public DataTable GetAllClientes()
+        {
+            return clienteRepository.GetAllClientes();
         }
     }
 }

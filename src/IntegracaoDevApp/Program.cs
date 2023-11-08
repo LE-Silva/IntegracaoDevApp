@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntegracaoDevApp.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace IntegracaoDevApp
         {
             System.Windows.Forms.Application.EnableVisualStyles();
             System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-            System.Windows.Forms.Application.Run(new MainWindow());
+            System.Windows.Forms.Application.Run(new LoginWindow());
         }
     }
 }

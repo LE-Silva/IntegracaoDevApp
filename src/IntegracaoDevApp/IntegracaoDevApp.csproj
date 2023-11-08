@@ -54,6 +54,12 @@
     <Compile Include="Views\ClienteWindow.Designer.cs">
       <DependentUpon>ClienteWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\LoginWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoginWindow.Designer.cs">
+      <DependentUpon>LoginWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +83,12 @@
     </Compile>
     <EmbeddedResource Include="Views\ClienteWindow.resx">
       <DependentUpon>ClienteWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\LoginWindow.resx">
+      <DependentUpon>LoginWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainWindow.pt-BR.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>

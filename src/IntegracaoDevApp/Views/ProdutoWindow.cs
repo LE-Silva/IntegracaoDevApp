@@ -1,6 +1,6 @@
 ﻿using IntegracaoDevApp.Application.Services;
 using IntegracaoDevApp.Data.Repositories;
-using IntegracaoDevApp.Domain.Models;
+using IntegracaoDevApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +18,7 @@ namespace IntegracaoDevApp
     {
         DataTable _dataTableProduto = new DataTable();
         ProdutoAppService _produtoAppService;
+        public Usuario usuarioLogado;
         public ProdutoWindow()
         {
             InitializeComponent();
@@ -39,7 +40,9 @@ namespace IntegracaoDevApp
 
             carregarGridProdutos();
         }
+
         #region cliques
+
         void btnAdicionar_Click(object sender, EventArgs e)
         {
             alterarStatusCampos();
@@ -99,6 +102,7 @@ namespace IntegracaoDevApp
                 tcProduto.SelectedIndex = 0;
             }
         }
+
         #endregion
         void alterarStatusCampos()
         {
@@ -119,7 +123,6 @@ namespace IntegracaoDevApp
                 return false;
             return true;
         }
-
         void atualizaProduto()
         {
             if (Decimal.TryParse(txtValor.Text, out decimal parcedValue))

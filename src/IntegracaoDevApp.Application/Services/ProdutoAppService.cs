@@ -1,5 +1,5 @@
 ﻿using IntegracaoDevApp.Data.Repositories;
-using IntegracaoDevApp.Domain.Models;
+using IntegracaoDevApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;

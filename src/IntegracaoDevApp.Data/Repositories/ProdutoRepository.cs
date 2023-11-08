@@ -5,14 +5,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IntegracaoDevApp.Domain.Models;
+using IntegracaoDevApp.Domain.Entities;
 using MyManagementApp.Data;
 
 namespace IntegracaoDevApp.Data.Repositories
 {
     public class ProdutoRepository
     {
-
         public bool Create(Produto entity)
         {
             var result = 0;
@@ -52,7 +51,6 @@ namespace IntegracaoDevApp.Data.Repositories
 
             return result > 0;
         }
-
         public bool Delete(string cdproduto)
         {
             var result = 0;
@@ -70,7 +68,6 @@ namespace IntegracaoDevApp.Data.Repositories
 
             return result > 0;
         }
-
         public DataTable GetAll()
         {
             DataTable produtos = new DataTable();
@@ -90,7 +87,6 @@ namespace IntegracaoDevApp.Data.Repositories
             }
 
         }
-
         public DataTable GetProdutoPorID(string cdProduto)
         {
             DataTable produto = new DataTable();
@@ -111,7 +107,6 @@ namespace IntegracaoDevApp.Data.Repositories
 
             return produto;
         }
-
         public ProdutoRepository()
         {
 
