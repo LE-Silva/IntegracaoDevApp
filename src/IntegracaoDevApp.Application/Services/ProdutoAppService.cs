@@ -12,9 +12,7 @@ namespace IntegracaoDevApp.Application.Services
     public class ProdutoAppService
     {
         ProdutoRepository produtoRepository;
-
         public ProdutoAppService() { produtoRepository = new ProdutoRepository(); }
-
         public bool Create(Produto produto)
         {
             return produtoRepository.Create(produto);

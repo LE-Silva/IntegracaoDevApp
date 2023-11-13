@@ -25,5 +25,17 @@ namespace IntegracaoDevApp.Domain.Entities
             StClientePremium = stClientePremium;
             StAtivo = stAtivo;
         }
+
+        public char getIsActiveChar()
+        {
+            if (!StAtivo) return ('N');
+            return ('S');
+        }
+        public bool getIsActiveBool(char isActiveChar)
+        {
+            if (isActiveChar == 'N')
+                return false;
+            return true;
+        }
     }
 }

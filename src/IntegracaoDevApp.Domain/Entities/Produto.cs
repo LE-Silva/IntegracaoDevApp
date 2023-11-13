@@ -26,12 +26,12 @@ namespace IntegracaoDevApp.Domain.Entities
 
         public char getIsActiveChar()
         {
-            if (!IsActive) return ('N');
+            if (!IsActive) return ('0');
             return ('S');
         }
         public bool getIsActiveBool(char isActiveChar)
         {
-            if (isActiveChar == 'N')
+            if (isActiveChar == '0')
                 return false;
             return true;
         }

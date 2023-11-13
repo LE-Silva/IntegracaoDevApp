@@ -26,7 +26,6 @@ namespace IntegracaoDevApp.Data.Repositories
                 command.Parameters.AddWithValue("@Cpf", entity.Cpf);
                 command.Parameters.AddWithValue("@TpPessoa", entity.TpPessoa);
                 command.Parameters.AddWithValue("@StClientePremium", entity.StClientePremium);
-                command.Parameters.AddWithValue("@StAtivo", entity.StAtivo);
 
                 rowsAffected = command.ExecuteNonQuery();
             }
@@ -43,9 +42,9 @@ namespace IntegracaoDevApp.Data.Repositories
                 var query = "UPDATE ClienteAtv2510 SET " +
                     "Nome = @Nome, " +
                     "Cpf = @Cpf, " +
-                    "TpPessoa = @TpPessoa" +
-                    "StClientePremium = @StAtivo" +
-                    "StAtivo = @StAtivo" +
+                    "TpPessoa = @TpPessoa, " +
+                    "StClientePremium = @StClientePremium, " +
+                    "StAtivo = @StAtivo " +
                     "WHERE " +
                     "CdCliente = @CdCliente";
 
@@ -55,7 +54,7 @@ namespace IntegracaoDevApp.Data.Repositories
                 command.Parameters.AddWithValue("@Cpf", entity.Cpf);
                 command.Parameters.AddWithValue("@TpPessoa", entity.TpPessoa);
                 command.Parameters.AddWithValue("@StClientePremium", entity.StClientePremium);
-                command.Parameters.AddWithValue("@StAtivo", entity.StAtivo);
+                command.Parameters.AddWithValue("@StAtivo", entity.getIsActiveBool(entity.getIsActiveChar()));
 
                 rowsAffected = command.ExecuteNonQuery();
             }
@@ -86,7 +85,7 @@ namespace IntegracaoDevApp.Data.Repositories
             {
                 conn.Open();
 
-                var query = "SELECT CdCliente, Nome, Cpf, TpPessoa, StClientePremium, StAtivo FROM ClienteAtv2510 WHERE CdCliente = @CdCliente";
+                var query = "SELECT CdCliente, Nome, ISNULL(Cpf, '') AS Cpf, ISNULL(TpPessoa, '') AS TpPessoa, ISNULL(StClientePremium, 0) AS StClientePremium, ISNULL(StAtivo, 0) as StAtivo FROM ClienteAtv2510 WHERE CdCliente = @CdCliente";
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("CdCliente", cdcliente);
 
@@ -106,7 +105,7 @@ namespace IntegracaoDevApp.Data.Repositories
             {
                 conn.Open();
 
-                var query = "SELECT CdCliente, Nome, Cpf, TpPessoa, StClientePremium, StAtivo FROM ClienteAtv2510";
+                var query = "SELECT CdCliente, Nome, ISNULL(Cpf, '') AS Cpf, ISNULL(TpPessoa, '') AS TpPessoa, ISNULL(StClientePremium, 0) AS StClientePremium, ISNULL(StAtivo, 0) as StAtivo FROM ClienteAtv2510";
                 var command = new SqlCommand(query, conn);
 
                 using (var adapter = new SqlDataAdapter(command))

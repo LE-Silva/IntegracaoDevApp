@@ -18,7 +18,7 @@ namespace IntegracaoDevApp
     {
         //private BindingList<Cliente> listaClientes = new BindingList<Cliente>();
         public Usuario usuarioLogado;
-        private DataTable cliente = new DataTable();
+        private DataTable _dataTableClientes = new DataTable();
         private ClienteAppService _clienteAppService;
         private List<Cliente> listaClientes; 
 
@@ -33,9 +33,6 @@ namespace IntegracaoDevApp
 
             var tiposPessoa = new string[] {"Masculino", "Feminino", "Juridico"};
             var listaCaracteresInvalidos = new string[] { "$", "/", "<", ">"};
-
-            cliente = _clienteAppService.GetAllClientes();
-            dgvClientes.DataSource = cliente;
 
             cbTpPessoa.DataSource = tiposPessoa;
             cbTpPessoa.SelectedIndex = -1;
@@ -52,6 +49,7 @@ namespace IntegracaoDevApp
             btnAdicionar.Click += btnAdicionar_Click;
             btnSalvar.Click += btnSalvar_Click;
             btnCancelar.Click += btnCancelar_Click;
+            btnExcluir.Click += btnExcluir_Click;
 
             ttCodigo.SetToolTip(txtCodigo, "Código do Cliente");
             ttCodigo.SetToolTip(txtNome, "Nome do Cliente");
@@ -91,14 +89,28 @@ namespace IntegracaoDevApp
             }
             void btnSalvar_Click(object sender, EventArgs e)
             {
-                if (validaCamposEmBranco())
-                {
-                    var result = _clienteAppService.Create(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked));
-                    //Insert();
-                    //Update();
-                    //listaClientes.Add(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked));
-                    //alterarStatusCampos();
-                }
+                var cliente = _clienteAppService.GetCliente(txtCodigo.Text);
+                if (cliente.Rows.Count > 0)
+                    atualizaCliente();
+                else
+                    insereCliente();
+
+                //if (validaCamposEmBranco())
+                //{
+                //    var result = _clienteAppService.Create(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked));
+                //    //Insert();
+                //    //Update();
+                //    //listaClientes.Add(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked));
+                //    //alterarStatusCampos();
+                //}
+
+                carregarGridClientes();
+            }
+            void btnExcluir_Click(object sender, EventArgs e)
+            {
+                _clienteAppService.Delete(txtCodigo.Text);
+                MessageBox.Show("Excluido com sucesso!");
+                carregarGridClientes();
             }
 
             void txtCodigo_DoubleClick(object sender, EventArgs e)
@@ -223,44 +235,79 @@ namespace IntegracaoDevApp
                 dgvClientes.Refresh();
             }
 
-            void alterarStatusCampos()
-            {
-                //limparCampos();
-                btnAdicionar.Enabled = !btnAdicionar.Enabled;
-                btnSalvar.Enabled = !btnSalvar.Enabled;
-                txtCodigo.Enabled = !txtCodigo.Enabled;
-                mtxtCPF.Enabled = !mtxtCPF.Enabled;
-                txtNome.Enabled = !txtNome.Enabled;
-                btnCancelar.Enabled = !btnCancelar.Enabled;
-                cbTpPessoa.Enabled = !cbTpPessoa.Enabled;
-                rbtnAtivo.Enabled = !rbtnAtivo.Enabled;
-                rbtnInativo.Enabled = !rbtnInativo.Enabled;
-                rbtnAtivo.Checked = !rbtnAtivo.Checked;
-                chkCliPremium.Enabled = !chkCliPremium.Enabled;
-            }
-            bool validaCamposEmBranco()
-            {
-                if (string.IsNullOrEmpty(txtCodigo.Text.Trim()))
-                {
-                    MessageBox.Show("Código não pode estar em branco!");
-                    txtCodigo.Focus();
-                    return false;
-                }
-                if (string.IsNullOrEmpty(txtNome.Text.Trim()))
-                {
-                    MessageBox.Show("Nome não pode estar em branco!");
-                    txtNome.Focus();
-                    return false;
-                }
-                return true;
-            }
+
+            carregarGridClientes();
         }
 
         private void DgvClientes_DoubleClick(object sender, EventArgs e)
         {
-            var cliente = (Cliente)dgvClientes.SelectedRows[0].DataBoundItem;
-            txtCodigo.Text = cliente.CdCliente.ToString();
-            txtNome.Text = cliente.Nome.ToString();
+            //var cliente = (Cliente)dgvClientes.SelectedRows[0].DataBoundItem;
+            //txtCodigo.Text = cliente.CdCliente.ToString();
+            //txtNome.Text = cliente.Nome.ToString();
+
+            if (dgvClientes.SelectedRows.Count == 1)
+            {
+                alterarStatusCampos();
+                DataGridViewRow selectedRow = dgvClientes.SelectedRows[0];
+                txtCodigo.Text = selectedRow.Cells["CdCliente"].Value.ToString();
+                txtNome.Text = selectedRow.Cells["Nome"].Value.ToString();
+                mtxtCPF.Text = selectedRow.Cells["Cpf"].Value.ToString();
+                cbTpPessoa.Text = selectedRow.Cells["TpPessoa"].Value.ToString();
+                chkCliPremium.Checked = getIsActiveBool(Convert.ToInt32(selectedRow.Cells["StClientePremium"].Value));
+                rbtnAtivo.Checked = getIsActiveBool(Convert.ToInt32(selectedRow.Cells["StAtivo"].Value));
+                tcCadastrarP.SelectedIndex = 0;
+            }
+        }
+
+        void carregarGridClientes()
+        {
+            _dataTableClientes = _clienteAppService.GetAllClientes();
+            dgvClientes.DataSource = _dataTableClientes;
+            dgvClientes.Refresh();
+        }
+
+        void atualizaCliente()
+        {
+            if (_clienteAppService.Update(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked)))
+                MessageBox.Show("Atualizado com Sucesso!");
+            else
+                MessageBox.Show("Erro ao atualizar");
+            _dataTableClientes = _clienteAppService.GetAllClientes();
+            dgvClientes.Refresh();
+        }
+
+        void insereCliente()
+        {
+            if (_clienteAppService.Create(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked)))
+                MessageBox.Show("Cadastrado com Sucesso!");
+            else
+                MessageBox.Show("Erro ao inserir o produto");
+            _dataTableClientes = _clienteAppService.GetAllClientes();
+            dgvClientes.Refresh();
+        }
+
+        bool getIsActiveBool(int isActiveBit)
+        {
+            if (isActiveBit == 0)
+                return false;
+            return true;
+        }
+
+        void alterarStatusCampos()
+        {
+            //limparCampos();
+            btnAdicionar.Enabled = !btnAdicionar.Enabled;
+            btnSalvar.Enabled = !btnSalvar.Enabled;
+            btnExcluir.Enabled = !btnExcluir.Enabled;
+            txtCodigo.Enabled = !txtCodigo.Enabled;
+            mtxtCPF.Enabled = !mtxtCPF.Enabled;
+            txtNome.Enabled = !txtNome.Enabled;
+            btnCancelar.Enabled = !btnCancelar.Enabled;
+            cbTpPessoa.Enabled = !cbTpPessoa.Enabled;
+            rbtnAtivo.Enabled = !rbtnAtivo.Enabled;
+            rbtnInativo.Enabled = !rbtnInativo.Enabled;
+            rbtnAtivo.Checked = !rbtnAtivo.Checked;
+            chkCliPremium.Enabled = !chkCliPremium.Enabled;
         }
     }
 
