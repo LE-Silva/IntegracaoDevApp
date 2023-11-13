@@ -42,9 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Pedido\Pedido.cs" />
+    <Compile Include="Entities\Pedido\PedidoItem.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Enums\PedidoStatusEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
