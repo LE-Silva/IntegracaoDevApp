@@ -1,4 +1,5 @@
 ﻿using IntegracaoDevApp.Data.Repositories;
+using IntegracaoDevApp.Domain.Core;
 using IntegracaoDevApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,20 @@ namespace IntegracaoDevApp.Application.Services
         public DataTable GetAllClientes()
         {
             return clienteRepository.GetAllClientes();
+        }
+
+
+        public Result CreateWithResult(Cliente cliente)
+        {
+            var r = cliente.IsValid();
+            if (!r.Success)
+            {
+                return r;
+            }
+
+            clienteRepository.Create(cliente);
+
+            return Result.Factory.True();
         }
     }
 }

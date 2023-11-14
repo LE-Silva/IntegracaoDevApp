@@ -278,10 +278,22 @@ namespace IntegracaoDevApp
 
         void insereCliente()
         {
-            if (_clienteAppService.Create(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked)))
-                MessageBox.Show("Cadastrado com Sucesso!");
-            else
-                MessageBox.Show("Erro ao inserir o produto");
+            var r = _clienteAppService.CreateWithResult(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked));
+            if (!r.Success)
+            {
+                var message = new StringBuilder();
+                foreach (var item in r.Messages)
+                    message.AppendLine(item.ToString());
+
+                MessageBox.Show(message.ToString());
+                return;
+            }
+
+            //if (_clienteAppService.Create(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked)))
+            //    MessageBox.Show("Cadastrado com Sucesso!");
+            //else
+            //    MessageBox.Show("Erro ao inserir o produto");
+
             _dataTableClientes = _clienteAppService.GetAllClientes();
             dgvClientes.Refresh();
         }

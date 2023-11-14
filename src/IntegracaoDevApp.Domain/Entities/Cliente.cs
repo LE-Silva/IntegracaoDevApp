@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntegracaoDevApp.Domain.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,19 @@ namespace IntegracaoDevApp.Domain.Entities
             if (isActiveChar == 'N')
                 return false;
             return true;
+        }
+
+        public Result IsValid()
+        {
+            var messages = new List<string>();
+
+            if (string.IsNullOrEmpty(this.CdCliente))
+                messages.Add("Código do Cliente está vazio");
+
+            if (string.IsNullOrEmpty(this.Nome))
+                messages.Add("Nome do Cliente está vazio");
+
+            return Result.Factory.New(messages);
         }
     }
 }
