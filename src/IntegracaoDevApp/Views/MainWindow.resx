@@ -122,16 +122,22 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cadastrarClientesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="cadastrarClientesToolStripMenuItem.Text" xml:space="preserve">
     <value>Cadastrar Clientes</value>
   </data>
   <data name="cadastrarProdutosToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="cadastrarProdutosToolStripMenuItem.Text" xml:space="preserve">
     <value>Cadastrar Produtos</value>
+  </data>
+  <data name="pedidoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="pedidoToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pedido</value>
   </data>
   <data name="arquivoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 20</value>
@@ -260,6 +266,12 @@
   </data>
   <data name="&gt;&gt;tslUser.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pedidoToolStripMenuItem.Name" xml:space="preserve">
+    <value>pedidoToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;pedidoToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MainWindow</value>

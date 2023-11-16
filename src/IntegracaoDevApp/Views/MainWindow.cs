@@ -1,4 +1,5 @@
 ﻿using IntegracaoDevApp.Domain.Entities;
+using IntegracaoDevApp.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,7 @@ namespace IntegracaoDevApp
 
             cadastrarClientesToolStripMenuItem.Click += cadastrarClientesToolStripMenuItem_Click;
             cadastrarProdutosToolStripMenuItem.Click += cadastrarProdutosToolStripMenuItem_Click;
+            pedidoToolStripMenuItem.Click += pedidoToolStripMenuItem_Click;
 
             tslBd.Text = "SPT_LEJ_DbNutAg";
             tslUser.Text = usuarioLogado.Username;
@@ -40,6 +42,13 @@ namespace IntegracaoDevApp
             cadastroProduto.usuarioLogado = Usuario;
             cadastroProduto.MdiParent = this;
             cadastroProduto.Show();
+        }
+
+        void pedidoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var lancamentoPedido = new PedidoView();
+            lancamentoPedido.MdiParent = this;
+            lancamentoPedido.Show();
         }
     }
 }

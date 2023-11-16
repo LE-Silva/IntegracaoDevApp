@@ -127,10 +127,17 @@ namespace IntegracaoDevApp
         {
             if (Decimal.TryParse(txtValor.Text, out decimal parcedValue))
             {
-                if (_produtoAppService.Update(new Produto(txtCodigo.Text, txtDescricao.Text, chkAtivo.Checked, dtpDtValidade.Value, parcedValue)))
-                    MessageBox.Show("Atualizado com Sucesso!");
-                else
-                    MessageBox.Show("Erro ai atualizar");
+                var r = _produtoAppService.Update(new Produto(txtCodigo.Text, txtDescricao.Text, chkAtivo.Checked, dtpDtValidade.Value, parcedValue));
+                if (!r.Success)
+                {
+                    var message = new StringBuilder();
+                    foreach (var item in r.Messages)
+                        message.AppendLine(item.ToString());
+
+                    MessageBox.Show(message.ToString());
+                    return;
+                }
+
                 _dataTableProduto = _produtoAppService.GetAll();
                 dgvProdutos.Refresh();
             }
@@ -143,10 +150,17 @@ namespace IntegracaoDevApp
         {
             if (Decimal.TryParse(txtValor.Text, out decimal parcedValue))
             {
-                if (_produtoAppService.Create(new Produto(txtCodigo.Text, txtDescricao.Text, true, dtpDtValidade.Value, parcedValue)))
-                    MessageBox.Show("Cadastrado com Sucesso!");
-                else
-                    MessageBox.Show("Erro ao inserir o produto");
+                var r = _produtoAppService.Create(new Produto(txtCodigo.Text, txtDescricao.Text, true, dtpDtValidade.Value, parcedValue));
+                if (!r.Success)
+                {
+                    var message = new StringBuilder();
+                    foreach (var item in r.Messages)
+                        message.AppendLine(item.ToString());
+
+                    MessageBox.Show(message.ToString());
+                    return;
+                }
+
                 _dataTableProduto = _produtoAppService.GetAll();
                 dgvProdutos.Refresh();
             }

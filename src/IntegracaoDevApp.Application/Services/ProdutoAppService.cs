@@ -1,4 +1,5 @@
 ﻿using IntegracaoDevApp.Data.Repositories;
+using IntegracaoDevApp.Domain.Core;
 using IntegracaoDevApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,32 @@ namespace IntegracaoDevApp.Application.Services
     {
         ProdutoRepository produtoRepository;
         public ProdutoAppService() { produtoRepository = new ProdutoRepository(); }
-        public bool Create(Produto produto)
+        public Result Create(Produto produto)
         {
-            return produtoRepository.Create(produto);
+            var r = produto.IsValid();
+            if (!r.Success)
+            {
+                return r;
+            }
+            produtoRepository.Create(produto);
+
+            return Result.Factory.True();
         }
         public bool Delete(string produto)
         {
             return produtoRepository.Delete(produto);
         }
-        public bool Update(Produto produto)
+        public Result Update(Produto produto)
         {
-            return produtoRepository.Update(produto);
+
+            var r = produto.IsValid();
+            if (!r.Success)
+            {
+                return r;
+            }
+            produtoRepository.Update(produto);
+
+            return Result.Factory.True();
         }
         public DataTable GetById(string cdproduto)
         {

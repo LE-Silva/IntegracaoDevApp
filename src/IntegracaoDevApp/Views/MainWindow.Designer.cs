@@ -37,6 +37,7 @@
             this.tslBd = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tslUser = new System.Windows.Forms.ToolStripLabel();
+            this.pedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msMenuSuperior.SuspendLayout();
             this.tsBottom.SuspendLayout();
             this.SuspendLayout();
@@ -52,7 +53,8 @@
             // 
             this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrarClientesToolStripMenuItem,
-            this.cadastrarProdutosToolStripMenuItem});
+            this.cadastrarProdutosToolStripMenuItem,
+            this.pedidoToolStripMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             resources.ApplyResources(this.arquivoToolStripMenuItem, "arquivoToolStripMenuItem");
             // 
@@ -91,6 +93,11 @@
             this.tslUser.Name = "tslUser";
             resources.ApplyResources(this.tslUser, "tslUser");
             // 
+            // pedidoToolStripMenuItem
+            // 
+            this.pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
+            resources.ApplyResources(this.pedidoToolStripMenuItem, "pedidoToolStripMenuItem");
+            // 
             // MainWindow
             // 
             this.AllowDrop = true;
@@ -122,5 +129,6 @@
         private System.Windows.Forms.ToolStripLabel tslBd;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel tslUser;
+        private System.Windows.Forms.ToolStripMenuItem pedidoToolStripMenuItem;
     }
 }

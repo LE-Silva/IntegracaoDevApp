@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Core\Result.cs" />
     <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\Pedido\Pedido.cs" />
+    <Compile Include="Entities\Pedido\PedidoItem.cs" />
     <Compile Include="Entities\Produto.cs" />
     <Compile Include="Entities\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

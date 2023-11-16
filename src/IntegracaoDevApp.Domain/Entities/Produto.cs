@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntegracaoDevApp.Domain.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,6 +35,22 @@ namespace IntegracaoDevApp.Domain.Entities
             if (isActiveChar == '0')
                 return false;
             return true;
+        }
+
+        public Result IsValid()
+        {
+            var messages = new List<string>();
+
+            if (string.IsNullOrEmpty(this.CdProduto))
+                messages.Add("Código do produto precisa estar preenchido");
+
+            if (string.IsNullOrEmpty(this.Descricao))
+                messages.Add("Produto não pode ter descrição vazia");
+
+            if (this.Valor <= 0)
+                messages.Add("Valor do produto não pode estar zerado");
+
+            return Result.Factory.New(messages);
         }
     }
 }

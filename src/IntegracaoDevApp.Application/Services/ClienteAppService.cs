@@ -12,7 +12,7 @@ namespace IntegracaoDevApp.Application.Services
 {
     public class ClienteAppService
     {
-        ClienteRepository clienteRepository = new ClienteRepository();
+        ClienteRepository clienteRepository;
 
         public ClienteAppService() { clienteRepository = new ClienteRepository(); }
 
