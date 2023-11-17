@@ -11,6 +11,7 @@ namespace IntegracaoDevApp.Domain.Entities.Pedido
         public int NumPedido { get; set; }
         public int Seq { get; set; }
         public Produto Produto { get; set; }
+        public decimal Quantidade { get; set; }
         public decimal Valor {  get; set; }
         public PedidoItem(int numpedido, Produto produto,decimal valor)
         {

@@ -11,16 +11,16 @@ namespace IntegracaoDevApp.Domain.Entities.Pedido
     public class Pedido
     {
         public int NumPedido { get; set; }
-        public Cliente Cliente { get; set; }
+        public string  CdCliente { get; set; }
         public DateTime DtAbertura { get; set; }
         public DateTime DtFechamento {  get; set; }
         public string Status {  get; set; }
         public IList<PedidoItem> ListaItens { get; set; }
 
-        public Pedido(int numpedido, Cliente cliente, DateTime dtabertura, DateTime dtfechamento, string status)
+        public Pedido(int numpedido, string cliente, DateTime dtabertura, DateTime dtfechamento, string status)
         {
             NumPedido = numpedido;
-            Cliente = cliente;
+            CdCliente = cliente;
             DtAbertura = dtabertura;
             DtFechamento = dtfechamento;
             Status = status;
