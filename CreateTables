@@ -1,0 +1,43 @@
+USE [SPT_LEJ_DbNutAG]
+
+CREATE TABLE [dbo].[ClienteAtv2510](
+	[CdCliente] [nchar](15) NOT NULL,
+	[Nome] [nvarchar](60) NOT NULL,
+	[Cpf] [nvarchar](15) NULL,
+	[TpPessoa] [nvarchar](10) NULL,
+	[StClientePremium] [bit] NULL,
+	[StAtivo] [bit] NULL,
+ CONSTRAINT [PK__ClienteA__FE6512F12394B4F9] PRIMARY KEY CLUSTERED 
+(
+	[CdCliente] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[ProdutoAtv3110](
+	[CdProduto] [nchar](15) NOT NULL,
+	[Descricao] [nvarchar](60) NOT NULL,
+	[Preco] [decimal](18, 0) NOT NULL,
+	[IsActive] [char](1) NOT NULL,
+	[DtValidade] [datetime] NULL
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[PedidoItemDevApp](
+	[NumPedido] [int] NOT NULL,
+	[CdProduto] [nvarchar](15) NOT NULL,
+	[Seq] [int] IDENTITY(1,1) NOT NULL,
+	[Quantidade] [decimal](18, 0) NULL,
+	[Valor] [decimal](18, 0) NULL
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[PedidoDevApp](
+	[NumPedido] [int] IDENTITY(1,1) NOT NULL,
+	[CdCliente] [nvarchar](15) NOT NULL,
+	[DtAbertura] [datetime] NOT NULL,
+	[DtFechamento] [datetime] NOT NULL,
+	[status] [nvarchar](1) NOT NULL,
+	[Total] [decimal](18, 0) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[NumPedido] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
