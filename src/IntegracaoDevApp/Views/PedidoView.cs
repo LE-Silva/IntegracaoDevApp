@@ -1,5 +1,6 @@
 ﻿using IntegracaoDevApp.Application.Services;
 using IntegracaoDevApp.Domain.Entities.Pedido;
+using IntegracaoDevApp.SubViews;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,48 +18,38 @@ namespace IntegracaoDevApp.Views
         private Pedido _pedidoAtual;
         private BindingSource _pedidoBindingSource = new BindingSource();
         private PedidoAppService _pedidoAppService = new PedidoAppService();
+        private ClienteAppService _clienteAppService = new ClienteAppService();
         public PedidoView()
         {
             InitializeComponent();
             _pedidoBindingSource.DataSource = _pedidoAppService.GetAllPedidos();
             bindingNavigator1.BindingSource = _pedidoBindingSource;
-            bnNumPedido.LostFocus += bnNumPedido_LostFocus;
-        }
-
-        void carregarGridItens(int numpedido)
-        {
-            dgvPedidoItens.Refresh();
-        }
-
-        void bnNumPedido_LostFocus(object sender, EventArgs e)
-        {
-            if (!verificaSePedidoExiste())
-                MessageBox.Show("Pedido não existe");
-            else
-                preencheCamposComDadosDoPedido();
+            txtNumPedido.DoubleClick += txtNumPedido_DoubleClick;
         }
 
         void preencheCamposComDadosDoPedido()
         {
+            txtNumPedido.Text = _pedidoAtual.NumPedido.ToString();
             txtCdCliente.Text = _pedidoAtual.CdCliente;
             txtStatusPedido.Text = _pedidoAtual.Status;
             dtpDtAbertura.Value = _pedidoAtual.DtAbertura;
             dtpDtFechamento.Value = _pedidoAtual.DtFechamento;
+            txtNomeCliente.Text = getNomeCliente();
+        }
+        void txtNumPedido_DoubleClick(object sender, EventArgs e)
+        {
+            var janelaPequisaPedido = new PesquisaPedido();
+            janelaPequisaPedido.ShowDialog();
+            _pedidoAtual = janelaPequisaPedido._pedidoAtual;
+            preencheCamposComDadosDoPedido();
         }
 
-        bool verificaSePedidoExiste()
+        string getNomeCliente()
         {
-            _pedidoAtual = _pedidoAppService.GetPedidoByNumero(bnNumPedido.Text);
-            if (_pedidoAtual == null)
-                return false;
-            return true;
-        }
+            var cliente = _clienteAppService.GetCliente(txtCdCliente.Text);
+            var nomeCliente = cliente.Rows[0]["Nome"].ToString();
 
-        void refresh()
-        {
-            _pedidoBindingSource.DataSource = _pedidoAtual;
-            bindingNavigator1.BindingSource = _pedidoBindingSource;
-            bnNumPedido.LostFocus += bnNumPedido_LostFocus;
+            return nomeCliente;
         }
     }
 }

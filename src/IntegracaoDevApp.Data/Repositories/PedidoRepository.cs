@@ -36,9 +36,9 @@ namespace IntegracaoDevApp.Data.Repositories
             return itens;
         }
 
-        public DataSet GetAllPedidos()
+        public DataTable GetAllPedidos()
         {
-            DataSet result = new DataSet();
+            DataTable result = new DataTable();
 
             using (var conn = ConnectionProvider.GetConnection())
             {

@@ -42,7 +42,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtpDtFechamento = new System.Windows.Forms.DateTimePicker();
             this.dtpDtAbertura = new System.Windows.Forms.DateTimePicker();
             this.lblDtFechamento = new System.Windows.Forms.Label();
             this.lblDtAbertura = new System.Windows.Forms.Label();
@@ -57,6 +56,9 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.dgvPedidoItens = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dtpDtFechamento = new System.Windows.Forms.DateTimePicker();
+            this.lblNumPedido = new System.Windows.Forms.Label();
+            this.txtNumPedido = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -70,6 +72,7 @@
             this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bindingNavigator1.Enabled = false;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -88,7 +91,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bnNumPedido;
-            this.bindingNavigator1.Size = new System.Drawing.Size(868, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(995, 25);
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -173,50 +176,42 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 135F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.07663F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 375F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 119F));
-            this.tableLayoutPanel1.Controls.Add(this.dtpDtFechamento, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dtpDtAbertura, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblDtFechamento, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblDtAbertura, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblStatus, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblClienteNome, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtCdCliente, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblcdCliente, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtNomeCliente, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.txtStatusPedido, 2, 1);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
+            this.tableLayoutPanel1.Controls.Add(this.dtpDtFechamento, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblDtFechamento, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dtpDtAbertura, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblDtAbertura, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtStatusPedido, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblStatus, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtNomeCliente, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblClienteNome, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtCdCliente, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblcdCliente, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lblNumPedido, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtNumPedido, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tbPedidoItens, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 38);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.30855F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 429F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(844, 506);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 413F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(971, 506);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // dtpDtFechamento
-            // 
-            this.dtpDtFechamento.Enabled = false;
-            this.dtpDtFechamento.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.dtpDtFechamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDtFechamento.Location = new System.Drawing.Point(728, 21);
-            this.dtpDtFechamento.Name = "dtpDtFechamento";
-            this.dtpDtFechamento.Size = new System.Drawing.Size(105, 26);
-            this.dtpDtFechamento.TabIndex = 32;
-            this.dtpDtFechamento.Value = new System.DateTime(2023, 10, 14, 22, 8, 39, 0);
             // 
             // dtpDtAbertura
             // 
             this.dtpDtAbertura.Enabled = false;
             this.dtpDtAbertura.Font = new System.Drawing.Font("Arial Narrow", 12F);
             this.dtpDtAbertura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDtAbertura.Location = new System.Drawing.Point(616, 21);
+            this.dtpDtAbertura.Location = new System.Drawing.Point(760, 21);
             this.dtpDtAbertura.Name = "dtpDtAbertura";
             this.dtpDtAbertura.Size = new System.Drawing.Size(105, 26);
             this.dtpDtAbertura.TabIndex = 31;
@@ -226,7 +221,7 @@
             // 
             this.lblDtFechamento.AutoSize = true;
             this.lblDtFechamento.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblDtFechamento.Location = new System.Drawing.Point(728, 0);
+            this.lblDtFechamento.Location = new System.Drawing.Point(872, 0);
             this.lblDtFechamento.Name = "lblDtFechamento";
             this.lblDtFechamento.Size = new System.Drawing.Size(79, 16);
             this.lblDtFechamento.TabIndex = 30;
@@ -236,7 +231,7 @@
             // 
             this.lblDtAbertura.AutoSize = true;
             this.lblDtAbertura.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblDtAbertura.Location = new System.Drawing.Point(616, 0);
+            this.lblDtAbertura.Location = new System.Drawing.Point(760, 0);
             this.lblDtAbertura.Name = "lblDtAbertura";
             this.lblDtAbertura.Size = new System.Drawing.Size(56, 16);
             this.lblDtAbertura.TabIndex = 29;
@@ -246,7 +241,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(511, 0);
+            this.lblStatus.Location = new System.Drawing.Point(650, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(45, 16);
             this.lblStatus.TabIndex = 27;
@@ -256,17 +251,17 @@
             // 
             this.lblClienteNome.AutoSize = true;
             this.lblClienteNome.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClienteNome.Location = new System.Drawing.Point(138, 0);
+            this.lblClienteNome.Location = new System.Drawing.Point(275, 0);
             this.lblClienteNome.Name = "lblClienteNome";
-            this.lblClienteNome.Size = new System.Drawing.Size(109, 16);
+            this.lblClienteNome.Size = new System.Drawing.Size(41, 16);
             this.lblClienteNome.TabIndex = 2;
-            this.lblClienteNome.Text = "Código do Cliente";
+            this.lblClienteNome.Text = "Nome";
             // 
             // txtCdCliente
             // 
-            this.txtCdCliente.Enabled = false;
+            this.txtCdCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCdCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCdCliente.Location = new System.Drawing.Point(3, 21);
+            this.txtCdCliente.Location = new System.Drawing.Point(138, 21);
             this.txtCdCliente.Name = "txtCdCliente";
             this.txtCdCliente.Size = new System.Drawing.Size(129, 26);
             this.txtCdCliente.TabIndex = 0;
@@ -275,7 +270,7 @@
             // 
             this.lblcdCliente.AutoSize = true;
             this.lblcdCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcdCliente.Location = new System.Drawing.Point(3, 0);
+            this.lblcdCliente.Location = new System.Drawing.Point(138, 0);
             this.lblcdCliente.Name = "lblcdCliente";
             this.lblcdCliente.Size = new System.Drawing.Size(109, 16);
             this.lblcdCliente.TabIndex = 1;
@@ -283,32 +278,33 @@
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Enabled = false;
+            this.txtNomeCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNomeCliente.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeCliente.Location = new System.Drawing.Point(138, 21);
+            this.txtNomeCliente.Location = new System.Drawing.Point(275, 21);
             this.txtNomeCliente.Name = "txtNomeCliente";
             this.txtNomeCliente.Size = new System.Drawing.Size(366, 26);
             this.txtNomeCliente.TabIndex = 3;
             // 
             // txtStatusPedido
             // 
+            this.txtStatusPedido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtStatusPedido.Enabled = false;
             this.txtStatusPedido.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtStatusPedido.Location = new System.Drawing.Point(511, 21);
+            this.txtStatusPedido.Location = new System.Drawing.Point(650, 21);
             this.txtStatusPedido.Name = "txtStatusPedido";
             this.txtStatusPedido.Size = new System.Drawing.Size(99, 26);
             this.txtStatusPedido.TabIndex = 26;
             // 
             // tbPedidoItens
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.tbPedidoItens, 5);
+            this.tableLayoutPanel1.SetColumnSpan(this.tbPedidoItens, 6);
             this.tbPedidoItens.Controls.Add(this.tpItens);
             this.tbPedidoItens.Controls.Add(this.tabPage2);
             this.tbPedidoItens.Enabled = false;
             this.tbPedidoItens.Location = new System.Drawing.Point(3, 60);
             this.tbPedidoItens.Name = "tbPedidoItens";
             this.tbPedidoItens.SelectedIndex = 0;
-            this.tbPedidoItens.Size = new System.Drawing.Size(838, 423);
+            this.tbPedidoItens.Size = new System.Drawing.Size(965, 407);
             this.tbPedidoItens.TabIndex = 33;
             // 
             // tpItens
@@ -318,7 +314,7 @@
             this.tpItens.Location = new System.Drawing.Point(4, 22);
             this.tpItens.Name = "tpItens";
             this.tpItens.Padding = new System.Windows.Forms.Padding(3);
-            this.tpItens.Size = new System.Drawing.Size(830, 397);
+            this.tpItens.Size = new System.Drawing.Size(957, 381);
             this.tpItens.TabIndex = 0;
             this.tpItens.Text = "Itens";
             this.tpItens.UseVisualStyleBackColor = true;
@@ -327,7 +323,7 @@
             // 
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(824, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(951, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -336,7 +332,7 @@
             this.dgvPedidoItens.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPedidoItens.Location = new System.Drawing.Point(3, 3);
             this.dgvPedidoItens.Name = "dgvPedidoItens";
-            this.dgvPedidoItens.Size = new System.Drawing.Size(824, 391);
+            this.dgvPedidoItens.Size = new System.Drawing.Size(954, 391);
             this.dgvPedidoItens.TabIndex = 2;
             // 
             // tabPage2
@@ -344,19 +340,50 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(830, 397);
+            this.tabPage2.Size = new System.Drawing.Size(855, 376);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Totais";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dtpDtFechamento
+            // 
+            this.dtpDtFechamento.Enabled = false;
+            this.dtpDtFechamento.Font = new System.Drawing.Font("Arial Narrow", 12F);
+            this.dtpDtFechamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDtFechamento.Location = new System.Drawing.Point(872, 21);
+            this.dtpDtFechamento.Name = "dtpDtFechamento";
+            this.dtpDtFechamento.Size = new System.Drawing.Size(92, 26);
+            this.dtpDtFechamento.TabIndex = 32;
+            this.dtpDtFechamento.Value = new System.DateTime(2023, 10, 14, 22, 8, 39, 0);
+            // 
+            // lblNumPedido
+            // 
+            this.lblNumPedido.AutoSize = true;
+            this.lblNumPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumPedido.Location = new System.Drawing.Point(3, 0);
+            this.lblNumPedido.Name = "lblNumPedido";
+            this.lblNumPedido.Size = new System.Drawing.Size(47, 16);
+            this.lblNumPedido.TabIndex = 34;
+            this.lblNumPedido.Text = "Pedido";
+            // 
+            // txtNumPedido
+            // 
+            this.txtNumPedido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNumPedido.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumPedido.Location = new System.Drawing.Point(3, 21);
+            this.txtNumPedido.Name = "txtNumPedido";
+            this.txtNumPedido.Size = new System.Drawing.Size(129, 26);
+            this.txtNumPedido.TabIndex = 35;
             // 
             // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(868, 556);
+            this.ClientSize = new System.Drawing.Size(995, 556);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PedidoView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PedidoView";
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
@@ -392,7 +419,6 @@
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtStatusPedido;
-        private System.Windows.Forms.DateTimePicker dtpDtFechamento;
         private System.Windows.Forms.DateTimePicker dtpDtAbertura;
         private System.Windows.Forms.Label lblDtFechamento;
         private System.Windows.Forms.Label lblDtAbertura;
@@ -401,5 +427,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.DataGridView dgvPedidoItens;
+        private System.Windows.Forms.DateTimePicker dtpDtFechamento;
+        private System.Windows.Forms.Label lblNumPedido;
+        private System.Windows.Forms.TextBox txtNumPedido;
     }
 }

@@ -21,7 +21,7 @@ namespace IntegracaoDevApp.Application.Services
             return list;
         }
 
-        public DataSet GetAllPedidos()
+        public DataTable GetAllPedidos()
         {
             return pedidoRepository.GetAllPedidos();
         }
