@@ -44,6 +44,7 @@ namespace IntegracaoDevApp.Views
             this.lblcdCliente = new System.Windows.Forms.Label();
             this.lblNumPedido = new System.Windows.Forms.Label();
             this.txtNumPedido = new System.Windows.Forms.TextBox();
+            this.pedidoItemView1 = new IntegracaoDevApp.SubViews.PedidoItemView();
             this.tsPedido = new System.Windows.Forms.ToolStrip();
             this.btnAdicionarPedido = new System.Windows.Forms.ToolStripButton();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
@@ -75,6 +76,7 @@ namespace IntegracaoDevApp.Views
             this.tableLayoutPanel1.Controls.Add(this.lblcdCliente, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblNumPedido, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumPedido, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pedidoItemView1, 0, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 38);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -206,6 +208,15 @@ namespace IntegracaoDevApp.Views
             this.txtNumPedido.Size = new System.Drawing.Size(129, 26);
             this.txtNumPedido.TabIndex = 35;
             // 
+            // pedidoItemView1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.pedidoItemView1, 6);
+            this.pedidoItemView1.Enabled = false;
+            this.pedidoItemView1.Location = new System.Drawing.Point(3, 60);
+            this.pedidoItemView1.Name = "pedidoItemView1";
+            this.pedidoItemView1.Size = new System.Drawing.Size(965, 407);
+            this.pedidoItemView1.TabIndex = 36;
+            // 
             // tsPedido
             // 
             this.tsPedido.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -276,7 +287,7 @@ namespace IntegracaoDevApp.Views
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "PedidoView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PedidoView";
+            this.Text = "Pedido";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tsPedido.ResumeLayout(false);
@@ -306,5 +317,6 @@ namespace IntegracaoDevApp.Views
         private System.Windows.Forms.ToolStripButton btnSalvar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripButton btnFechar;
+        private SubViews.PedidoItemView pedidoItemView1;
     }
 }

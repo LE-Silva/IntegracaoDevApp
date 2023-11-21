@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IntegracaoDevApp.Domain.Entities.Pedido
+namespace IntegracaoDevApp.Domain.Entities.PedidoItem
 {
     public class Pedido
     {

@@ -1,6 +1,6 @@
 ﻿using IntegracaoDevApp.Application.Services;
 using IntegracaoDevApp.Domain.Entities;
-using IntegracaoDevApp.Domain.Entities.Pedido;
+using IntegracaoDevApp.Domain.Entities.PedidoItem;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

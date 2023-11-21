@@ -1,6 +1,6 @@
 ﻿namespace IntegracaoDevApp.SubViews
 {
-    partial class PesquisaCliente
+    partial class PesquisaProduto
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvClientes = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
+            this.dgvProdutos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvClientes
+            // dgvProdutos
             // 
-            this.dgvClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvClientes.Location = new System.Drawing.Point(12, 26);
-            this.dgvClientes.Name = "dgvClientes";
-            this.dgvClientes.Size = new System.Drawing.Size(776, 412);
-            this.dgvClientes.TabIndex = 1;
+            this.dgvProdutos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProdutos.Location = new System.Drawing.Point(12, 26);
+            this.dgvProdutos.Name = "dgvProdutos";
+            this.dgvProdutos.Size = new System.Drawing.Size(776, 412);
+            this.dgvProdutos.TabIndex = 1;
             // 
-            // PesquisaCliente
+            // PesquisaProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dgvClientes);
-            this.Name = "PesquisaCliente";
-            this.Text = "Pesquisar Cliente";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).EndInit();
+            this.Controls.Add(this.dgvProdutos);
+            this.Name = "PesquisaProduto";
+            this.Text = "Pesquisar Produto";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvClientes;
+        private System.Windows.Forms.DataGridView dgvProdutos;
     }
 }

@@ -1,5 +1,5 @@
 ﻿using IntegracaoDevApp.Domain.Entities;
-using IntegracaoDevApp.Domain.Entities.Pedido;
+using IntegracaoDevApp.Domain.Entities.PedidoItem;
 using MyManagementApp.Data;
 using System;
 using System.Collections.Generic;
@@ -75,16 +75,17 @@ namespace IntegracaoDevApp.Data.Repositories
             {
                 conn.Open();
 
-                var query = "SELECT" +
-                    " Numpedido" +
-                    ", CdCliente" +
-                    ", DtAbertura" +
-                    ", DtFechamento" +
-                    ", CASE" +
-                    " WHEN Status = 'F' THEN 'FECHADO'" +
-                    " ELSE 'ABERTO'" +
-                    " END AS Status" +
-                    ", Total " +
+                var query = "SELECT " +
+                    "Numpedido, " +
+                    "CdCliente, " +
+                    "DtAbertura, " +
+                    "DtFechamento, " +
+                    "CASE " +
+                        "WHEN " +
+                        "Status = 'F' THEN 'FECHADO'" +
+                        "ELSE 'ABERTO'" +
+                    "END AS Status, " +
+                    "Total " +
                     "FROM PedidoDevApp";
                 var command = new SqlCommand(query, conn);
 

@@ -1,6 +1,6 @@
 ﻿using IntegracaoDevApp.Application.Services;
 using IntegracaoDevApp.Domain.Entities;
-using IntegracaoDevApp.Domain.Entities.Pedido;
+using IntegracaoDevApp.Domain.Entities.PedidoItem;
 using IntegracaoDevApp.SubViews;
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,8 @@ namespace IntegracaoDevApp.Views
             var janelaPequisaPedido = new PesquisaPedido();
             janelaPequisaPedido.ShowDialog();
             _pedidoAtual = janelaPequisaPedido._pedidoAtual;
-            preencheCamposComDadosDoPedido();
+            if(_pedidoAtual != null)
+                preencheCamposComDadosDoPedido();
         }
         void buscaCliente(object sender, EventArgs e)
         {
@@ -104,6 +105,8 @@ namespace IntegracaoDevApp.Views
             dtpDtAbertura.Value = _pedidoAtual.DtAbertura;
             //dtpDtFechamento.Value = _pedidoAtual.DtFechamento;
             txtNomeCliente.Text = getNomeCliente();
+            preencheItensPedido();
+
         }
         string getNomeCliente()
         {
@@ -118,6 +121,13 @@ namespace IntegracaoDevApp.Views
             btnCancelar.Enabled = !btnCancelar.Enabled;
             btnExcluir.Enabled = !btnExcluir.Enabled;
             btnSalvar.Enabled = !btnSalvar.Enabled;
+        }
+
+        void preencheItensPedido()
+        {
+            pedidoItemView1.Enabled = true;
+            pedidoItemView1._numpedido = Convert.ToInt32(txtNumPedido.Text);
+            pedidoItemView1.carregarGridPedidoItem();
         }
     }
 }

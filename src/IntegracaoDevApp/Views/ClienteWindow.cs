@@ -20,7 +20,7 @@ namespace IntegracaoDevApp
         public Usuario usuarioLogado;
         private DataTable _dataTableClientes = new DataTable();
         private ClienteAppService _clienteAppService;
-        private List<Cliente> listaClientes; 
+        private List<Cliente> listaClientes;
 
         public ClienteWindow()
         {

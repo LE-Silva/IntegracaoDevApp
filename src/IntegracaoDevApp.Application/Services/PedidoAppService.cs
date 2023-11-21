@@ -1,7 +1,7 @@
 ﻿using IntegracaoDevApp.Data.Repositories;
 using IntegracaoDevApp.Domain.Core;
 using IntegracaoDevApp.Domain.Entities;
-using IntegracaoDevApp.Domain.Entities.Pedido;
+using IntegracaoDevApp.Domain.Entities.PedidoItem;
 using MyManagementApp.Data;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,6 @@ namespace IntegracaoDevApp.Application.Services
     {
         PedidoRepository pedidoRepository;
         public PedidoAppService() { pedidoRepository = new PedidoRepository(); }
-
         public Result Create(Pedido pedido)
         {
             var r = pedido.IsValid();

@@ -66,6 +66,12 @@
     <Compile Include="SubViews\PesquisaPedido.Designer.cs">
       <DependentUpon>PesquisaPedido.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubViews\PesquisaProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubViews\PesquisaProduto.Designer.cs">
+      <DependentUpon>PesquisaProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClienteWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubViews\PesquisaPedido.resx">
       <DependentUpon>PesquisaPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubViews\PesquisaProduto.resx">
+      <DependentUpon>PesquisaProduto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ClienteWindow.resx">
       <DependentUpon>ClienteWindow.cs</DependentUpon>
