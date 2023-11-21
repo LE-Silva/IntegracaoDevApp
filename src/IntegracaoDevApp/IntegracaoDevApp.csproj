@@ -48,6 +48,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubViews\PedidoItemView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\PedidoItemView.Designer.cs">
+      <DependentUpon>PedidoItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubViews\PesquisaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubViews\PesquisaCliente.Designer.cs">
+      <DependentUpon>PesquisaCliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubViews\PesquisaPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +105,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SubViews\PedidoItemView.resx">
+      <DependentUpon>PedidoItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubViews\PesquisaCliente.resx">
+      <DependentUpon>PesquisaCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SubViews\PesquisaPedido.resx">
       <DependentUpon>PesquisaPedido.cs</DependentUpon>
     </EmbeddedResource>

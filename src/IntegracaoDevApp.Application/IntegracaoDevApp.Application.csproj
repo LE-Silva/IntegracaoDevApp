@@ -45,6 +45,7 @@
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\ClienteAppService.cs" />
     <Compile Include="Services\PedidoAppService.cs" />
+    <Compile Include="Services\PedidoItemAppService.cs" />
     <Compile Include="Services\ProdutoAppService.cs" />
   </ItemGroup>
   <ItemGroup>

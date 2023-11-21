@@ -45,6 +45,7 @@
     <Compile Include="DataConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ClienteRepository.cs" />
+    <Compile Include="Repositories\PedidoItemRepository.cs" />
     <Compile Include="Repositories\PedidoRepository.cs" />
     <Compile Include="Repositories\ProdutoRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />

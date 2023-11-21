@@ -15,27 +15,58 @@ namespace IntegracaoDevApp.Data.Repositories
     {
         public PedidoRepository() { }
 
-        public DataTable GetTodosItensDoPedido(int numpedido)
+        public bool Create(Pedido entity)
         {
-            DataTable itens = new DataTable();
-
+            var rowsAffected = 0;
             using (var conn = ConnectionProvider.GetConnection())
             {
                 conn.Open();
 
-                var query = "SELECT NumPedido, Seq, CdProduto, Quantidade, Valor FROM PedidoItemDevApp WHERE NumPedido = @NumPedido";
+                var query = "INSERT INTO PedidoDevApp (CdCliente, DtAbertura, DtFechamento, Status, Total) VALUES (@CdCliente, GETDATE(), NULL, @Status, 0)";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@CdCliente", entity.CdCliente);
+                command.Parameters.AddWithValue("@Status", "A");
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+
+            return rowsAffected > 0;
+        }
+        public bool Delete(string numpedido)
+        {
+            var rowsAffected = 0;
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "DELETE FROM PedidoDevApp WHERE NumPedido = @NumPedido";
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@NumPedido", numpedido);
 
-                using (var adapter = new SqlDataAdapter(command))
-                {
-                    adapter.Fill(itens);
-                }
+                rowsAffected = command.ExecuteNonQuery();
             }
 
-            return itens;
+            return rowsAffected > 0;
         }
+        public bool Fechar(string numpedido, string novoStatus)
+        {
+            var rowsAffected = 0;
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
 
+                var query = "UPDATE PedidoDevApp " +
+                    " SET Status = @NovoStatus" +
+                    " WHERE NumPedido = @NumPedido";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@NumPedido", numpedido);
+                command.Parameters.AddWithValue("@NovoStatus", novoStatus);
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+
+            return rowsAffected > 0;
+        }
         public DataTable GetAllPedidos()
         {
             DataTable result = new DataTable();
@@ -49,7 +80,10 @@ namespace IntegracaoDevApp.Data.Repositories
                     ", CdCliente" +
                     ", DtAbertura" +
                     ", DtFechamento" +
-                    ", Status" +
+                    ", CASE" +
+                    " WHEN Status = 'F' THEN 'FECHADO'" +
+                    " ELSE 'ABERTO'" +
+                    " END AS Status" +
                     ", Total " +
                     "FROM PedidoDevApp";
                 var command = new SqlCommand(query, conn);
@@ -62,7 +96,6 @@ namespace IntegracaoDevApp.Data.Repositories
 
             return result;
         }
-
         public DataSet GetPedidoByNumero(string numpedido)
         {
             DataSet result = new DataSet();

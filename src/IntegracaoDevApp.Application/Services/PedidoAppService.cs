@@ -1,9 +1,12 @@
 ﻿using IntegracaoDevApp.Data.Repositories;
+using IntegracaoDevApp.Domain.Core;
 using IntegracaoDevApp.Domain.Entities;
 using IntegracaoDevApp.Domain.Entities.Pedido;
+using MyManagementApp.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,18 +17,34 @@ namespace IntegracaoDevApp.Application.Services
     {
         PedidoRepository pedidoRepository;
         public PedidoAppService() { pedidoRepository = new PedidoRepository(); }
-        public IList<PedidoItem> GetPedidoItems(int numpedido)
-        {
-            var table = pedidoRepository.GetTodosItensDoPedido(numpedido);
-            var list = table.Rows.Cast<PedidoItem>().ToList();
-            return list;
-        }
 
+        public Result Create(Pedido pedido)
+        {
+            var r = pedido.IsValid();
+            if (!r.Success)
+            {
+                return r;
+            }
+
+            pedidoRepository.Create(pedido);
+
+            return Result.Factory.True();
+        }
+        public bool Delete(string numpedido)
+        {
+            return pedidoRepository.Delete(numpedido);
+        }
+        public bool Fechar(string numpedido, string status)
+        {
+            if (status == "FECHADO")
+                return pedidoRepository.Fechar(numpedido, "A");
+            else
+                return pedidoRepository.Fechar(numpedido, "F");
+        }
         public DataTable GetAllPedidos()
         {
             return pedidoRepository.GetAllPedidos();
         }
-
         public Pedido GetPedidoByNumero(string numpedido)
         {
             var ds = pedidoRepository.GetPedidoByNumero(numpedido);
@@ -41,5 +60,6 @@ namespace IntegracaoDevApp.Application.Services
                     )
             );
         }
+
     }
 }

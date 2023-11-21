@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IntegracaoDevApp.Domain.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -26,10 +27,27 @@ namespace IntegracaoDevApp.Domain.Entities.Pedido
             Status = status;
         }
 
+        public Pedido(int numpedido, string cliente, DateTime dtabertura, string status)
+        {
+            NumPedido = numpedido;
+            CdCliente = cliente;
+            DtAbertura = dtabertura;
+            Status = status;
+        }
+
         public IList<PedidoItem> GetItensDoPedido()
         {
             return ListaItens;
         }
 
+        public Result IsValid()
+        {
+            var messages = new List<string>();
+
+            if (string.IsNullOrEmpty(this.CdCliente))
+                messages.Add("Código do Cliente está vazio");
+
+            return Result.Factory.New(messages);
+        }
     }
 }
