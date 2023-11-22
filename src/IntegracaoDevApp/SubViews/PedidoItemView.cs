@@ -31,13 +31,12 @@ namespace IntegracaoDevApp.SubViews
 
             dgvPedidoItens.DoubleClick += DgvPedidoItens_DoubleClick;
         }
-
         private void BtnExcluirItem_Click(object sender, EventArgs e)
         {
             _itemAppService.Delete(_itemAtualSeq);
+            deixaCamposEmBranco();
             carregarGridPedidoItem();
         }
-
         private void DgvPedidoItens_DoubleClick(object sender, EventArgs e)
         {
             if (dgvPedidoItens.SelectedRows.Count == 1)
@@ -71,6 +70,8 @@ namespace IntegracaoDevApp.SubViews
 
                 if(_produtoSelecionado != null)
                     carregarGridPedidoItem();
+
+                deixaCamposEmBranco();
             }
         }
         public void carregarGridPedidoItem()
@@ -103,7 +104,6 @@ namespace IntegracaoDevApp.SubViews
             }
             preencheCampoItem();
         }
-
         public void deixaCamposEmBranco()
         {
             txtCdProduto.Text = string.Empty;
@@ -111,7 +111,6 @@ namespace IntegracaoDevApp.SubViews
             txtQtd.Text = string.Empty;
             txtValor.Text = string.Empty;
         }
-
         public void limpaGrid()
         {
             dgvPedidoItens.DataSource = null;

@@ -15,23 +15,32 @@ namespace IntegracaoDevApp.Data.Repositories
     {
         public PedidoRepository() { }
 
-        public bool Create(Pedido entity)
+        public int Create(Pedido entity)
         {
-            var rowsAffected = 0;
+            int newId = 0;
+
             using (var conn = ConnectionProvider.GetConnection())
             {
                 conn.Open();
 
-                var query = "INSERT INTO PedidoDevApp (CdCliente, DtAbertura, DtFechamento, Status, Total) VALUES (@CdCliente, GETDATE(), NULL, @Status, 0)";
+                var query = "INSERT INTO PedidoDevApp (CdCliente, DtAbertura, DtFechamento, Status, Total) VALUES (@CdCliente, GETDATE(), NULL, @Status, 0); " +
+                            "SELECT SCOPE_IDENTITY();";
+
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@CdCliente", entity.CdCliente);
                 command.Parameters.AddWithValue("@Status", "A");
 
-                rowsAffected = command.ExecuteNonQuery();
+                var result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out newId))
+                {
+                    return newId;
+                }
             }
 
-            return rowsAffected > 0;
+            return newId;
         }
+
         public bool Delete(string numpedido)
         {
             var rowsAffected = 0;
@@ -61,6 +70,24 @@ namespace IntegracaoDevApp.Data.Repositories
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@NumPedido", numpedido);
                 command.Parameters.AddWithValue("@NovoStatus", novoStatus);
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+
+            return rowsAffected > 0;
+        }
+        public bool CalculaTotalPedido(string numpedido)
+        {
+            var rowsAffected = 0;
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "UPDATE PedidoDevApp " +
+                    "SET Total = (SELECT SUM(Valor) FROM PedidoItemDevApp WHERE NumPedido = @NumPedido) " +
+                    "WHERE NumPedido = @NumPedido ";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@NumPedido", numpedido);
 
                 rowsAffected = command.ExecuteNonQuery();
             }

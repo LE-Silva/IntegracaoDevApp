@@ -17,17 +17,17 @@ namespace IntegracaoDevApp.Application.Services
     {
         PedidoRepository pedidoRepository;
         public PedidoAppService() { pedidoRepository = new PedidoRepository(); }
-        public Result Create(Pedido pedido)
+        public int Create(Pedido pedido)
         {
-            var r = pedido.IsValid();
-            if (!r.Success)
-            {
-                return r;
-            }
+            //var r = pedido.IsValid();
+            //if (!r.Success)
+            //{
+            //    return r;
+            //}
 
-            pedidoRepository.Create(pedido);
+            var numpedido = pedidoRepository.Create(pedido);
 
-            return Result.Factory.True();
+            return numpedido;
         }
         public bool Delete(string numpedido)
         {
@@ -62,6 +62,10 @@ namespace IntegracaoDevApp.Application.Services
         public bool IsPedidoFechado(string numero)
         {
             return pedidoRepository.IsPedidoFechado(numero);
+        }
+        public bool CalculaTotalPedido(string numero)
+        {
+            return pedidoRepository.CalculaTotalPedido(numero);
         }
     }
 }

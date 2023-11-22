@@ -32,8 +32,6 @@ namespace IntegracaoDevApp.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PedidoView));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtpDtFechamento = new System.Windows.Forms.DateTimePicker();
-            this.lblDtFechamento = new System.Windows.Forms.Label();
             this.dtpDtAbertura = new System.Windows.Forms.DateTimePicker();
             this.lblDtAbertura = new System.Windows.Forms.Label();
             this.txtStatusPedido = new System.Windows.Forms.TextBox();
@@ -44,13 +42,13 @@ namespace IntegracaoDevApp.Views
             this.lblcdCliente = new System.Windows.Forms.Label();
             this.lblNumPedido = new System.Windows.Forms.Label();
             this.txtNumPedido = new System.Windows.Forms.TextBox();
-            this.pedidoItemView1 = new IntegracaoDevApp.SubViews.PedidoItemView();
             this.tsPedido = new System.Windows.Forms.ToolStrip();
             this.btnAdicionarPedido = new System.Windows.Forms.ToolStripButton();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.btnSalvar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
+            this.pedidoItemView1 = new IntegracaoDevApp.SubViews.PedidoItemView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tsPedido.SuspendLayout();
             this.SuspendLayout();
@@ -64,8 +62,6 @@ namespace IntegracaoDevApp.Views
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel1.Controls.Add(this.dtpDtFechamento, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblDtFechamento, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.dtpDtAbertura, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblDtAbertura, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtStatusPedido, 3, 1);
@@ -86,27 +82,6 @@ namespace IntegracaoDevApp.Views
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(971, 506);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // dtpDtFechamento
-            // 
-            this.dtpDtFechamento.Enabled = false;
-            this.dtpDtFechamento.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.dtpDtFechamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDtFechamento.Location = new System.Drawing.Point(872, 21);
-            this.dtpDtFechamento.Name = "dtpDtFechamento";
-            this.dtpDtFechamento.Size = new System.Drawing.Size(92, 26);
-            this.dtpDtFechamento.TabIndex = 32;
-            this.dtpDtFechamento.Value = new System.DateTime(2023, 10, 14, 22, 8, 39, 0);
-            // 
-            // lblDtFechamento
-            // 
-            this.lblDtFechamento.AutoSize = true;
-            this.lblDtFechamento.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.lblDtFechamento.Location = new System.Drawing.Point(872, 0);
-            this.lblDtFechamento.Name = "lblDtFechamento";
-            this.lblDtFechamento.Size = new System.Drawing.Size(79, 16);
-            this.lblDtFechamento.TabIndex = 30;
-            this.lblDtFechamento.Text = "Fechamento";
             // 
             // dtpDtAbertura
             // 
@@ -208,15 +183,6 @@ namespace IntegracaoDevApp.Views
             this.txtNumPedido.Size = new System.Drawing.Size(129, 26);
             this.txtNumPedido.TabIndex = 35;
             // 
-            // pedidoItemView1
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.pedidoItemView1, 6);
-            this.pedidoItemView1.Enabled = false;
-            this.pedidoItemView1.Location = new System.Drawing.Point(3, 60);
-            this.pedidoItemView1.Name = "pedidoItemView1";
-            this.pedidoItemView1.Size = new System.Drawing.Size(965, 407);
-            this.pedidoItemView1.TabIndex = 36;
-            // 
             // tsPedido
             // 
             this.tsPedido.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -280,6 +246,15 @@ namespace IntegracaoDevApp.Views
             this.btnFechar.Size = new System.Drawing.Size(23, 22);
             this.btnFechar.Text = "Fechar";
             // 
+            // pedidoItemView1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.pedidoItemView1, 6);
+            this.pedidoItemView1.Enabled = false;
+            this.pedidoItemView1.Location = new System.Drawing.Point(3, 60);
+            this.pedidoItemView1.Name = "pedidoItemView1";
+            this.pedidoItemView1.Size = new System.Drawing.Size(965, 407);
+            this.pedidoItemView1.TabIndex = 36;
+            // 
             // PedidoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -308,9 +283,7 @@ namespace IntegracaoDevApp.Views
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtStatusPedido;
         private System.Windows.Forms.DateTimePicker dtpDtAbertura;
-        private System.Windows.Forms.Label lblDtFechamento;
         private System.Windows.Forms.Label lblDtAbertura;
-        private System.Windows.Forms.DateTimePicker dtpDtFechamento;
         private System.Windows.Forms.Label lblNumPedido;
         private System.Windows.Forms.TextBox txtNumPedido;
         private System.Windows.Forms.ToolStrip tsPedido;

@@ -29,30 +29,42 @@ namespace IntegracaoDevApp.Views
             btnExcluir.Click += btnExcluir_Click;
             btnFechar.Click += btnFechar_Click;
 
-            txtNumPedido.DoubleClick += txtNumPedido_DoubleClick;
-            txtCdCliente.DoubleClick += buscaCliente;
-            txtNomeCliente.DoubleClick += buscaCliente;
+            txtNumPedido.KeyDown += txtNumPedido_KeyDown;
+            txtCdCliente.KeyDown += buscaCliente;
+            txtNomeCliente.KeyDown += buscaCliente;
         }
-        void txtNumPedido_DoubleClick(object sender, EventArgs e)
+        void txtNumPedido_KeyDown(object sender, KeyEventArgs e)
         {
-            var janelaPequisaPedido = new PesquisaPedido();
-            janelaPequisaPedido.ShowDialog();
-            _pedidoAtual = janelaPequisaPedido._pedidoAtual;
-            if(_pedidoAtual != null)
-                preencheCamposComDadosDoPedido();
-        }
-        void buscaCliente(object sender, EventArgs e)
-        {
-            var janelaPesquisaCliente = new PesquisaCliente();
-            janelaPesquisaCliente.ShowDialog();
-            _clienteSelecionado = janelaPesquisaCliente._clienteSelecionado;
-            if (!_clienteSelecionado.StAtivo)
+            if (e.KeyCode == Keys.Enter)
             {
-                MessageBox.Show("Pedido não pode ter cliente inativo");
-                return;
+                var janelaPequisaPedido = new PesquisaPedido();
+                janelaPequisaPedido.ShowDialog();
+                _pedidoAtual = janelaPequisaPedido._pedidoAtual;
+                if (_pedidoAtual != null)
+                {
+                    pedidoItemView1.deixaCamposEmBranco();
+                    preencheCamposComDadosDoPedido();
+                    verificaPedidoFechado();
+                }
             }
-            txtCdCliente.Text = _clienteSelecionado.CdCliente;
-            txtNomeCliente.Text = _clienteSelecionado.Nome;
+            
+        }
+        void buscaCliente(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                var janelaPesquisaCliente = new PesquisaCliente();
+                janelaPesquisaCliente.ShowDialog();
+                _clienteSelecionado = janelaPesquisaCliente._clienteSelecionado;
+                if (!_clienteSelecionado.StAtivo)
+                {
+                    MessageBox.Show("Pedido não pode ter cliente inativo");
+                    return;
+                }
+                txtCdCliente.Text = _clienteSelecionado.CdCliente;
+                txtNomeCliente.Text = _clienteSelecionado.Nome;
+            }
+            
         }
         void btnAdicionarPedido_Click(object sender, EventArgs e)
         {
@@ -75,15 +87,19 @@ namespace IntegracaoDevApp.Views
         void btnSalvar_Click(object sender, EventArgs e)
         {
             var r = _pedidoAppService.Create(new Pedido(0, txtCdCliente.Text, DateTime.Now, "A"));
-            if (!r.Success)
-            {
-                var message = new StringBuilder();
-                foreach (var item in r.Messages)
-                    message.AppendLine(item.ToString());
+            //if (!r.Success)
+            //{
+            //    var message = new StringBuilder();
+            //    foreach (var item in r.Messages)
+            //        message.AppendLine(item.ToString());
+            //
+            //    MessageBox.Show(message.ToString());
+            //    return;
+            //}
 
-                MessageBox.Show(message.ToString());
-                return;
-            }
+            _pedidoAtual = _pedidoAppService.GetPedidoByNumero(r.ToString());
+            preencheCamposComDadosDoPedido();
+            verificaPedidoFechado();
 
             btnCancelar.Enabled = false;
             btnExcluir.Enabled = true;
@@ -101,7 +117,7 @@ namespace IntegracaoDevApp.Views
                 return;
             }
             _pedidoAppService.Delete(txtNumPedido.Text);
-            pedidoItemView1._itemAppService.DeleteTodosItensPedido(txtNumPedido.Text);
+            pedidoItemView1._itemAppService.DeleteTodosItensPedido(txtNumPedido.Text);            
             pedidoItemView1.Enabled = false;
             pedidoItemView1.deixaCamposEmBranco();
             pedidoItemView1.limpaGrid();
@@ -120,7 +136,9 @@ namespace IntegracaoDevApp.Views
         {
             _pedidoAppService.Fechar(txtNumPedido.Text, txtStatusPedido.Text);
             _pedidoAtual = _pedidoAppService.GetPedidoByNumero(txtNumPedido.Text);
+            pedidoItemView1.deixaCamposEmBranco();
             preencheCamposComDadosDoPedido();
+            verificaPedidoFechado();
         }
         void alterarStatusCampos()
         {
@@ -160,6 +178,15 @@ namespace IntegracaoDevApp.Views
             pedidoItemView1.Enabled = true;
             pedidoItemView1._numpedido = Convert.ToInt32(txtNumPedido.Text);
             pedidoItemView1.carregarGridPedidoItem();
+        }
+        void verificaPedidoFechado()
+        {
+            if (txtStatusPedido.Text == "FECHADO")
+            {
+                pedidoItemView1.Enabled = false;
+                return;
+            }
+            pedidoItemView1.Enabled = true;
         }
     }
 }
