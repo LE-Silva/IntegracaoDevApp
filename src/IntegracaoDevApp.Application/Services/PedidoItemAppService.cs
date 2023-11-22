@@ -35,8 +35,11 @@ namespace IntegracaoDevApp.Application.Services
         }
         public bool Delete(int id)
         {
-            PedidoItemRepository.Delete(id);
-            return true;
+            return PedidoItemRepository.Delete(id);
+        }
+        public bool DeleteTodosItensPedido(string numpedido)
+        {
+            return PedidoItemRepository.DeteteTodosItensPedido(numpedido);
         }
     }
 }

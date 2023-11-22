@@ -263,6 +263,7 @@ namespace IntegracaoDevApp.Views
             // btnExcluir
             // 
             this.btnExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExcluir.Enabled = false;
             this.btnExcluir.Image = ((System.Drawing.Image)(resources.GetObject("btnExcluir.Image")));
             this.btnExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExcluir.Name = "btnExcluir";
@@ -272,6 +273,7 @@ namespace IntegracaoDevApp.Views
             // btnFechar
             // 
             this.btnFechar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFechar.Enabled = false;
             this.btnFechar.Image = ((System.Drawing.Image)(resources.GetObject("btnFechar.Image")));
             this.btnFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnFechar.Name = "btnFechar";

@@ -16,7 +16,7 @@
             {
                 return new DataConfig() {
                     DataBase = "SPT_LEJ_DbNutAg",
-                    Server = "172.16.3.50",
+                    Server = "PC-LUIS",
                     User = "sa",
                     Password = "dp"                
                 };

@@ -35,6 +35,8 @@ namespace IntegracaoDevApp.Domain.Entities.PedidoItem
 
             if (this.Valor <= 0)
                 messages.Add("Valor do produto não pode estar zerado!");
+            if (this.Quantidade <= 0)
+                messages.Add("Quantidade não pode ser 0");
 
             return Result.Factory.New(messages);
         }

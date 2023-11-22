@@ -105,13 +105,17 @@ namespace IntegracaoDevApp.Data.Repositories
             {
                 conn.Open();
 
-                var query = "SELECT" +
-                    " Numpedido" +
-                    ", CdCliente" +
-                    ", DtAbertura" +
-                    ", DtFechamento" +
-                    ", Status" +
-                    ", Total " +
+                var query = "SELECT " +
+                    "Numpedido, " +
+                    "CdCliente, " +
+                    "DtAbertura, " +
+                    "DtFechamento, " +
+                    "CASE " +
+                        "WHEN " +
+                        "Status = 'F' THEN 'FECHADO'" +
+                        "ELSE 'ABERTO'" +
+                    "END AS Status, " +
+                    "Total " +
                     "FROM PedidoDevApp WHERE numpedido = @numpedido";
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@numpedido", numpedido);
@@ -123,6 +127,26 @@ namespace IntegracaoDevApp.Data.Repositories
             }
 
             return result;
+        }
+        public bool IsPedidoFechado(string numero)
+        {
+            DataTable result = new DataTable();
+
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "SELECT Status FROM PedidoDevApp WHERE NumPedido = @NumPedido AND Status = 'A'";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@NumPedido", numero);
+
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(result);
+                }
+            }
+
+            return result.Rows.Count != 0;
         }
     }
 }

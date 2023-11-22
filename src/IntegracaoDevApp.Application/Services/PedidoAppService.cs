@@ -54,11 +54,14 @@ namespace IntegracaoDevApp.Application.Services
                     Convert.ToInt32(row["NumPedido"]),
                     Convert.ToString(row["CdCliente"]),
                     Convert.ToDateTime(row["DtAbertura"]),
-                    Convert.ToDateTime(row["DtFechamento"]),
+                    //Convert.ToDateTime(row["DtFechamento"]),
                     Convert.ToString(row["Status"])
                     )
             );
         }
-
+        public bool IsPedidoFechado(string numero)
+        {
+            return pedidoRepository.IsPedidoFechado(numero);
+        }
     }
 }

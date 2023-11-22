@@ -47,6 +47,22 @@ namespace IntegracaoDevApp.Data.Repositories
 
             return rowsAffected > 0;
         }
+        public bool DeteteTodosItensPedido(string numpedido)
+        {
+            var rowsAffected = 0;
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "DELETE FROM PedidoItemDevApp WHERE NumPedido = @NumPedido";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@NumPedido", numpedido);
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+
+            return rowsAffected > 0;
+        }
         public DataTable GetTodosItensDoPedido(int numpedido)
         {
             DataTable itens = new DataTable();
@@ -55,7 +71,9 @@ namespace IntegracaoDevApp.Data.Repositories
             {
                 conn.Open();
 
-                var query = "SELECT NumPedido, Seq, CdProduto, Quantidade, Valor FROM PedidoItemDevApp WHERE NumPedido = @NumPedido";
+                var query = "SELECT NumPedido, Seq, PedidoItemDevApp.CdProduto, Descricao, Quantidade, Valor FROM PedidoItemDevApp " +
+                    "JOIN ProdutoAtv3110 ON ProdutoAtv3110.CdProduto = PedidoItemDevApp.CdProduto " +
+                    "WHERE NumPedido = @NumPedido";
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@NumPedido", numpedido);
 

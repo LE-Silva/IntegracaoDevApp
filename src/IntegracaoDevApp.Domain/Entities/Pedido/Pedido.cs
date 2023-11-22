@@ -16,7 +16,6 @@ namespace IntegracaoDevApp.Domain.Entities.PedidoItem
         public DateTime DtAbertura { get; set; }
         public DateTime DtFechamento {  get; set; }
         public string Status {  get; set; }
-        public IList<PedidoItem> ListaItens { get; set; }
 
         public Pedido(int numpedido, string cliente, DateTime dtabertura, DateTime dtfechamento, string status)
         {
@@ -33,11 +32,6 @@ namespace IntegracaoDevApp.Domain.Entities.PedidoItem
             CdCliente = cliente;
             DtAbertura = dtabertura;
             Status = status;
-        }
-
-        public IList<PedidoItem> GetItensDoPedido()
-        {
-            return ListaItens;
         }
 
         public Result IsValid()

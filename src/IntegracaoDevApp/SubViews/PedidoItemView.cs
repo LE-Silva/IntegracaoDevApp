@@ -19,7 +19,7 @@ namespace IntegracaoDevApp.SubViews
         Produto _produtoSelecionado;
         int _itemAtualSeq;
         DataTable _dataTableItens = new DataTable();
-        PedidoItemAppService _itemAppService = new PedidoItemAppService();
+        public PedidoItemAppService _itemAppService = new PedidoItemAppService();
         public PedidoItemView()
         {
             InitializeComponent();
@@ -96,7 +96,26 @@ namespace IntegracaoDevApp.SubViews
             var janelaPesquisaProduto = new PesquisaProduto();
             janelaPesquisaProduto.ShowDialog();
             _produtoSelecionado = janelaPesquisaProduto._produtoSelecionado;
+            if (!_produtoSelecionado.IsActive)
+            {
+                MessageBox.Show("Produto inativo");
+                return;
+            }
             preencheCampoItem();
+        }
+
+        public void deixaCamposEmBranco()
+        {
+            txtCdProduto.Text = string.Empty;
+            txtDescProd.Text = string.Empty;
+            txtQtd.Text = string.Empty;
+            txtValor.Text = string.Empty;
+        }
+
+        public void limpaGrid()
+        {
+            dgvPedidoItens.DataSource = null;
+            dgvPedidoItens.Refresh();
         }
     }
 }

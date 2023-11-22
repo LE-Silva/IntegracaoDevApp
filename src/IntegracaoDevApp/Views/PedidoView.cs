@@ -24,6 +24,7 @@ namespace IntegracaoDevApp.Views
         {
             InitializeComponent();
             btnAdicionarPedido.Click += btnAdicionarPedido_Click;
+            btnCancelar.Click += BtnCancelar_Click;
             btnSalvar.Click += btnSalvar_Click;
             btnExcluir.Click += btnExcluir_Click;
             btnFechar.Click += btnFechar_Click;
@@ -45,14 +46,31 @@ namespace IntegracaoDevApp.Views
             var janelaPesquisaCliente = new PesquisaCliente();
             janelaPesquisaCliente.ShowDialog();
             _clienteSelecionado = janelaPesquisaCliente._clienteSelecionado;
+            if (!_clienteSelecionado.StAtivo)
+            {
+                MessageBox.Show("Pedido não pode ter cliente inativo");
+                return;
+            }
             txtCdCliente.Text = _clienteSelecionado.CdCliente;
             txtNomeCliente.Text = _clienteSelecionado.Nome;
         }
         void btnAdicionarPedido_Click(object sender, EventArgs e)
         {
-            inverteStatusBotoes();
+            btnCancelar.Enabled = true;
+            btnSalvar.Enabled = true;
+            btnAdicionarPedido.Enabled = false;
+            pedidoItemView1.deixaCamposEmBranco();
             alterarStatusCampos();
             deixaCamposEmBranco();
+        }
+        void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            alterarStatusCampos();
+            deixaCamposEmBranco();
+            btnCancelar.Enabled = false;
+            btnSalvar.Enabled = false;
+            btnAdicionarPedido.Enabled = true;
+            pedidoItemView1.Enabled = false;
         }
         void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -67,22 +85,42 @@ namespace IntegracaoDevApp.Views
                 return;
             }
 
-            //if (_clienteAppService.Create(new Cliente(txtCodigo.Text, txtNome.Text, mtxtCPF.Text, cbTpPessoa.Text, chkCliPremium.Checked, rbtnAtivo.Checked)))
-            //    MessageBox.Show("Cadastrado com Sucesso!");
-            //else
-            //    MessageBox.Show("Erro ao inserir o produto");
+            btnCancelar.Enabled = false;
+            btnExcluir.Enabled = true;
+            btnFechar.Enabled = true;
+            btnAdicionarPedido.Enabled = true;
+            txtCdCliente.Enabled = false;
+            txtNomeCliente.Enabled = false;
+            txtNumPedido.Enabled = true;
         }
         void btnExcluir_Click(object sender, EventArgs e)
         {
+            if (!_pedidoAppService.IsPedidoFechado(txtNumPedido.Text))
+            {
+                MessageBox.Show("Não pode excluir pedido fechado!");
+                return;
+            }
             _pedidoAppService.Delete(txtNumPedido.Text);
-            MessageBox.Show("Excluido com sucesso!");
-            alterarStatusCampos();
-            inverteStatusBotoes();
+            pedidoItemView1._itemAppService.DeleteTodosItensPedido(txtNumPedido.Text);
+            pedidoItemView1.Enabled = false;
+            pedidoItemView1.deixaCamposEmBranco();
+            pedidoItemView1.limpaGrid();
+            btnAdicionarPedido.Enabled = true;
+            btnCancelar.Enabled = false;
+            btnExcluir.Enabled = false;
+            btnFechar.Enabled = false;
+            btnSalvar.Enabled = false;
+            txtCdCliente.Enabled=false;
+            txtNomeCliente.Enabled=false;
+            txtNumPedido.Enabled = true;
             deixaCamposEmBranco();
+            MessageBox.Show("Excluido com sucesso!");
         }
         void btnFechar_Click(object sender, EventArgs e)
         {
             _pedidoAppService.Fechar(txtNumPedido.Text, txtStatusPedido.Text);
+            _pedidoAtual = _pedidoAppService.GetPedidoByNumero(txtNumPedido.Text);
+            preencheCamposComDadosDoPedido();
         }
         void alterarStatusCampos()
         {
@@ -106,7 +144,9 @@ namespace IntegracaoDevApp.Views
             //dtpDtFechamento.Value = _pedidoAtual.DtFechamento;
             txtNomeCliente.Text = getNomeCliente();
             preencheItensPedido();
-
+            btnSalvar.Enabled = false;
+            btnFechar.Enabled = true;
+            btnExcluir.Enabled = true;
         }
         string getNomeCliente()
         {
@@ -115,14 +155,6 @@ namespace IntegracaoDevApp.Views
 
             return nomeCliente;
         }
-        void inverteStatusBotoes()
-        {
-            btnAdicionarPedido.Enabled = !btnAdicionarPedido.Enabled;
-            btnCancelar.Enabled = !btnCancelar.Enabled;
-            btnExcluir.Enabled = !btnExcluir.Enabled;
-            btnSalvar.Enabled = !btnSalvar.Enabled;
-        }
-
         void preencheItensPedido()
         {
             pedidoItemView1.Enabled = true;
