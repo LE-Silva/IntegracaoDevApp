@@ -13,11 +13,11 @@ namespace IntegracaoDevApp.Domain.Entities.PedidoItem
     {
         public int NumPedido { get; set; }
         public string  CdCliente { get; set; }
-        public DateTime DtAbertura { get; set; }
-        public DateTime DtFechamento {  get; set; }
+        public DateTime? DtAbertura { get; set; }
+        public DateTime? DtFechamento {  get; set; }
         public string Status {  get; set; }
 
-        public Pedido(int numpedido, string cliente, DateTime dtabertura, DateTime dtfechamento, string status)
+        public Pedido(int numpedido, string cliente, DateTime? dtabertura, DateTime? dtfechamento, string status)
         {
             NumPedido = numpedido;
             CdCliente = cliente;

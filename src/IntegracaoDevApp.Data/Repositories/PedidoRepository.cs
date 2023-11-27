@@ -65,11 +65,15 @@ namespace IntegracaoDevApp.Data.Repositories
                 conn.Open();
 
                 var query = "UPDATE PedidoDevApp " +
-                    " SET Status = @NovoStatus" +
+                    " SET Status = @NovoStatus, DtFechamento = @DtFechamento" +
                     " WHERE NumPedido = @NumPedido";
                 var command = new SqlCommand(query, conn);
                 command.Parameters.AddWithValue("@NumPedido", numpedido);
                 command.Parameters.AddWithValue("@NovoStatus", novoStatus);
+                if (novoStatus == "F")
+                    command.Parameters.AddWithValue("@DtFechamento", DateTime.Now);
+                else
+                    command.Parameters.AddWithValue("@DtFechamento", DBNull.Value);
 
                 rowsAffected = command.ExecuteNonQuery();
             }
@@ -174,6 +178,128 @@ namespace IntegracaoDevApp.Data.Repositories
             }
 
             return result.Rows.Count != 0;
+        }
+        public DataSet GetPrimeiroPedido()
+        {
+            DataSet result = new DataSet();
+
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "SELECT TOP 1" +
+                    "Numpedido, " +
+                    "CdCliente, " +
+                    "DtAbertura, " +
+                    "DtFechamento, " +
+                    "CASE " +
+                        "WHEN " +
+                        "Status = 'F' THEN 'FECHADO'" +
+                        "ELSE 'ABERTO'" +
+                    "END AS Status, " +
+                    "Total " +
+                    "FROM PedidoDevApp ORDER BY DtAbertura";
+                var command = new SqlCommand(query, conn);
+
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(result);
+                }
+            }
+
+            return result;
+        }
+        public DataSet GetUltimoPedido()
+        {
+            DataSet result = new DataSet();
+
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "SELECT TOP 1" +
+                    "Numpedido, " +
+                    "CdCliente, " +
+                    "DtAbertura, " +
+                    "DtFechamento, " +
+                    "CASE " +
+                        "WHEN " +
+                        "Status = 'F' THEN 'FECHADO'" +
+                        "ELSE 'ABERTO'" +
+                    "END AS Status, " +
+                    "Total " +
+                    "FROM PedidoDevApp ORDER BY DtAbertura DESC";
+                var command = new SqlCommand(query, conn);
+
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(result);
+                }
+            }
+
+            return result;
+        }
+        public DataSet GetProximoPedido(string numpedidoAtual)
+        {
+            DataSet result = new DataSet();
+
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "SELECT TOP 1" +
+                    "Numpedido, " +
+                    "CdCliente, " +
+                    "DtAbertura, " +
+                    "DtFechamento, " +
+                    "CASE " +
+                        "WHEN " +
+                        "Status = 'F' THEN 'FECHADO'" +
+                        "ELSE 'ABERTO'" +
+                    "END AS Status, " +
+                    "Total " +
+                    "FROM PedidoDevApp WHERE NumPedido > @NumPedidoAtual";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@NumPedidoAtual", numpedidoAtual);
+
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(result);
+                }
+            }
+
+            return result;
+        }
+        public DataSet GetAnteriorPedido(string numpedidoAtual)
+        {
+            DataSet result = new DataSet();
+
+            using (var conn = ConnectionProvider.GetConnection())
+            {
+                conn.Open();
+
+                var query = "SELECT TOP 1" +
+                    "Numpedido, " +
+                    "CdCliente, " +
+                    "DtAbertura, " +
+                    "DtFechamento, " +
+                    "CASE " +
+                        "WHEN " +
+                        "Status = 'F' THEN 'FECHADO'" +
+                        "ELSE 'ABERTO'" +
+                    "END AS Status, " +
+                    "Total " +
+                    "FROM PedidoDevApp WHERE NumPedido < @NumPedidoAtual ORDER BY NumPedido DESC";
+                var command = new SqlCommand(query, conn);
+                command.Parameters.AddWithValue("@NumPedidoAtual", numpedidoAtual);
+
+                using (var adapter = new SqlDataAdapter(command))
+                {
+                    adapter.Fill(result);
+                }
+            }
+
+            return result;
         }
     }
 }

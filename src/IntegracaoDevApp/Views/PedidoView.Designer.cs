@@ -32,7 +32,6 @@ namespace IntegracaoDevApp.Views
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PedidoView));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.dtpDtAbertura = new System.Windows.Forms.DateTimePicker();
             this.lblDtAbertura = new System.Windows.Forms.Label();
             this.txtStatusPedido = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -42,12 +41,20 @@ namespace IntegracaoDevApp.Views
             this.lblcdCliente = new System.Windows.Forms.Label();
             this.lblNumPedido = new System.Windows.Forms.Label();
             this.txtNumPedido = new System.Windows.Forms.TextBox();
+            this.txtDtFechamento = new System.Windows.Forms.MaskedTextBox();
+            this.txtDtAbertura = new System.Windows.Forms.MaskedTextBox();
             this.tsPedido = new System.Windows.Forms.ToolStrip();
+            this.lblFechamento = new System.Windows.Forms.Label();
+            this.tssPedido = new System.Windows.Forms.ToolStripSeparator();
             this.btnAdicionarPedido = new System.Windows.Forms.ToolStripButton();
             this.btnCancelar = new System.Windows.Forms.ToolStripButton();
             this.btnSalvar = new System.Windows.Forms.ToolStripButton();
             this.btnExcluir = new System.Windows.Forms.ToolStripButton();
             this.btnFechar = new System.Windows.Forms.ToolStripButton();
+            this.btnUltimoPedido = new System.Windows.Forms.ToolStripButton();
+            this.btnProximo = new System.Windows.Forms.ToolStripButton();
+            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
+            this.btnPrimeiroPedido = new System.Windows.Forms.ToolStripButton();
             this.pedidoItemView1 = new IntegracaoDevApp.SubViews.PedidoItemView();
             this.tableLayoutPanel1.SuspendLayout();
             this.tsPedido.SuspendLayout();
@@ -60,9 +67,8 @@ namespace IntegracaoDevApp.Views
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.07663F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 375F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
-            this.tableLayoutPanel1.Controls.Add(this.dtpDtAbertura, 4, 1);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 99F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
             this.tableLayoutPanel1.Controls.Add(this.lblDtAbertura, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtStatusPedido, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblStatus, 3, 0);
@@ -73,6 +79,9 @@ namespace IntegracaoDevApp.Views
             this.tableLayoutPanel1.Controls.Add(this.lblNumPedido, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.txtNumPedido, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.pedidoItemView1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.txtDtFechamento, 5, 1);
+            this.tableLayoutPanel1.Controls.Add(this.txtDtAbertura, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblFechamento, 5, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 38);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
@@ -82,17 +91,6 @@ namespace IntegracaoDevApp.Views
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(971, 506);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // dtpDtAbertura
-            // 
-            this.dtpDtAbertura.Enabled = false;
-            this.dtpDtAbertura.Font = new System.Drawing.Font("Arial Narrow", 12F);
-            this.dtpDtAbertura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDtAbertura.Location = new System.Drawing.Point(760, 21);
-            this.dtpDtAbertura.Name = "dtpDtAbertura";
-            this.dtpDtAbertura.Size = new System.Drawing.Size(105, 26);
-            this.dtpDtAbertura.TabIndex = 31;
-            this.dtpDtAbertura.Value = new System.DateTime(2023, 10, 14, 22, 8, 39, 0);
             // 
             // lblDtAbertura
             // 
@@ -183,9 +181,38 @@ namespace IntegracaoDevApp.Views
             this.txtNumPedido.Size = new System.Drawing.Size(129, 26);
             this.txtNumPedido.TabIndex = 35;
             // 
+            // txtDtFechamento
+            // 
+            this.txtDtFechamento.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDtFechamento.Enabled = false;
+            this.txtDtFechamento.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtDtFechamento.Location = new System.Drawing.Point(859, 21);
+            this.txtDtFechamento.Mask = "00/00/0000";
+            this.txtDtFechamento.Name = "txtDtFechamento";
+            this.txtDtFechamento.Size = new System.Drawing.Size(99, 26);
+            this.txtDtFechamento.TabIndex = 37;
+            this.txtDtFechamento.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtDtAbertura
+            // 
+            this.txtDtAbertura.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDtAbertura.Enabled = false;
+            this.txtDtAbertura.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtDtAbertura.Location = new System.Drawing.Point(760, 21);
+            this.txtDtAbertura.Mask = "00/00/0000";
+            this.txtDtAbertura.Name = "txtDtAbertura";
+            this.txtDtAbertura.Size = new System.Drawing.Size(93, 26);
+            this.txtDtAbertura.TabIndex = 38;
+            this.txtDtAbertura.ValidatingType = typeof(System.DateTime);
+            // 
             // tsPedido
             // 
             this.tsPedido.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnPrimeiroPedido,
+            this.btnAnterior,
+            this.btnProximo,
+            this.btnUltimoPedido,
+            this.tssPedido,
             this.btnAdicionarPedido,
             this.btnCancelar,
             this.btnSalvar,
@@ -196,6 +223,21 @@ namespace IntegracaoDevApp.Views
             this.tsPedido.Size = new System.Drawing.Size(995, 25);
             this.tsPedido.TabIndex = 4;
             this.tsPedido.Text = "toolStrip2";
+            // 
+            // lblFechamento
+            // 
+            this.lblFechamento.AutoSize = true;
+            this.lblFechamento.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.lblFechamento.Location = new System.Drawing.Point(859, 0);
+            this.lblFechamento.Name = "lblFechamento";
+            this.lblFechamento.Size = new System.Drawing.Size(79, 16);
+            this.lblFechamento.TabIndex = 39;
+            this.lblFechamento.Text = "Fechamento";
+            // 
+            // tssPedido
+            // 
+            this.tssPedido.Name = "tssPedido";
+            this.tssPedido.Size = new System.Drawing.Size(6, 25);
             // 
             // btnAdicionarPedido
             // 
@@ -246,6 +288,42 @@ namespace IntegracaoDevApp.Views
             this.btnFechar.Size = new System.Drawing.Size(23, 22);
             this.btnFechar.Text = "Fechar";
             // 
+            // btnUltimoPedido
+            // 
+            this.btnUltimoPedido.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnUltimoPedido.Image = ((System.Drawing.Image)(resources.GetObject("btnUltimoPedido.Image")));
+            this.btnUltimoPedido.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUltimoPedido.Name = "btnUltimoPedido";
+            this.btnUltimoPedido.Size = new System.Drawing.Size(23, 22);
+            this.btnUltimoPedido.Text = "toolStripButton1";
+            // 
+            // btnProximo
+            // 
+            this.btnProximo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnProximo.Image = ((System.Drawing.Image)(resources.GetObject("btnProximo.Image")));
+            this.btnProximo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnProximo.Name = "btnProximo";
+            this.btnProximo.Size = new System.Drawing.Size(23, 22);
+            this.btnProximo.Text = "toolStripButton1";
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAnterior.Image = ((System.Drawing.Image)(resources.GetObject("btnAnterior.Image")));
+            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(23, 22);
+            this.btnAnterior.Text = "toolStripButton1";
+            // 
+            // btnPrimeiroPedido
+            // 
+            this.btnPrimeiroPedido.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPrimeiroPedido.Image = ((System.Drawing.Image)(resources.GetObject("btnPrimeiroPedido.Image")));
+            this.btnPrimeiroPedido.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrimeiroPedido.Name = "btnPrimeiroPedido";
+            this.btnPrimeiroPedido.Size = new System.Drawing.Size(23, 22);
+            this.btnPrimeiroPedido.Text = "toolStripButton1";
+            // 
             // pedidoItemView1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.pedidoItemView1, 6);
@@ -282,16 +360,23 @@ namespace IntegracaoDevApp.Views
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtStatusPedido;
-        private System.Windows.Forms.DateTimePicker dtpDtAbertura;
         private System.Windows.Forms.Label lblDtAbertura;
         private System.Windows.Forms.Label lblNumPedido;
         private System.Windows.Forms.TextBox txtNumPedido;
         private System.Windows.Forms.ToolStrip tsPedido;
+        private SubViews.PedidoItemView pedidoItemView1;
+        private System.Windows.Forms.MaskedTextBox txtDtFechamento;
+        private System.Windows.Forms.MaskedTextBox txtDtAbertura;
+        private System.Windows.Forms.Label lblFechamento;
+        private System.Windows.Forms.ToolStripSeparator tssPedido;
         private System.Windows.Forms.ToolStripButton btnAdicionarPedido;
         private System.Windows.Forms.ToolStripButton btnCancelar;
         private System.Windows.Forms.ToolStripButton btnSalvar;
         private System.Windows.Forms.ToolStripButton btnExcluir;
         private System.Windows.Forms.ToolStripButton btnFechar;
-        private SubViews.PedidoItemView pedidoItemView1;
+        private System.Windows.Forms.ToolStripButton btnPrimeiroPedido;
+        private System.Windows.Forms.ToolStripButton btnAnterior;
+        private System.Windows.Forms.ToolStripButton btnProximo;
+        private System.Windows.Forms.ToolStripButton btnUltimoPedido;
     }
 }

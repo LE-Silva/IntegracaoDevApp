@@ -54,7 +54,77 @@ namespace IntegracaoDevApp.Application.Services
                     Convert.ToInt32(row["NumPedido"]),
                     Convert.ToString(row["CdCliente"]),
                     Convert.ToDateTime(row["DtAbertura"]),
-                    //Convert.ToDateTime(row["DtFechamento"]),
+                    Convert.IsDBNull(row["DtFechamento"])
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(row["DtFechamento"]),
+                    Convert.ToString(row["Status"])
+                    )
+            );
+        }
+        public Pedido GetPrimeiroPedido()
+        {
+            var ds = pedidoRepository.GetPrimeiroPedido();
+            var table = ds.Tables[0];
+            var row = table.Rows[0];
+            return (
+                new Pedido(
+                    Convert.ToInt32(row["NumPedido"]),
+                    Convert.ToString(row["CdCliente"]),
+                    Convert.ToDateTime(row["DtAbertura"]),
+                    Convert.IsDBNull(row["DtFechamento"])
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(row["DtFechamento"]),
+                    Convert.ToString(row["Status"])
+                    )
+            );
+        }
+        public Pedido GetUltimoPedido()
+        {
+            var ds = pedidoRepository.GetUltimoPedido();
+            var table = ds.Tables[0];
+            var row = table.Rows[0];
+            return (
+                new Pedido(
+                    Convert.ToInt32(row["NumPedido"]),
+                    Convert.ToString(row["CdCliente"]),
+                    Convert.ToDateTime(row["DtAbertura"]),
+                    Convert.IsDBNull(row["DtFechamento"])
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(row["DtFechamento"]),
+                    Convert.ToString(row["Status"])
+                    )
+            );
+        }
+        public Pedido GetProximoPedido(string numpedidoAtual)
+        {
+            var ds = pedidoRepository.GetProximoPedido(numpedidoAtual);
+            var table = ds.Tables[0];
+            var row = table.Rows[0];
+            return (
+                new Pedido(
+                    Convert.ToInt32(row["NumPedido"]),
+                    Convert.ToString(row["CdCliente"]),
+                    Convert.ToDateTime(row["DtAbertura"]),
+                    Convert.IsDBNull(row["DtFechamento"])
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(row["DtFechamento"]),
+                    Convert.ToString(row["Status"])
+                    )
+            );
+        }
+        public Pedido GetAnteriorPedido(string numpedidoAtual)
+        {
+            var ds = pedidoRepository.GetAnteriorPedido(numpedidoAtual);
+            var table = ds.Tables[0];
+            var row = table.Rows[0];
+            return (
+                new Pedido(
+                    Convert.ToInt32(row["NumPedido"]),
+                    Convert.ToString(row["CdCliente"]),
+                    Convert.ToDateTime(row["DtAbertura"]),
+                    Convert.IsDBNull(row["DtFechamento"])
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(row["DtFechamento"]),
                     Convert.ToString(row["Status"])
                     )
             );

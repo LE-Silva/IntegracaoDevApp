@@ -36,7 +36,9 @@ namespace IntegracaoDevApp.SubViews
                     Convert.ToInt32(selectedRow.Cells["Numpedido"].Value),
                     Convert.ToString(selectedRow.Cells["CdCliente"].Value),
                     Convert.ToDateTime(selectedRow.Cells["DtAbertura"].Value),
-                    //Convert.ToDateTime(selectedRow.Cells["DtFechamento"].Value),
+                    Convert.IsDBNull(selectedRow.Cells["DtFechamento"].Value)
+                        ? (DateTime?)null
+                        : Convert.ToDateTime(selectedRow.Cells["DtFechamento"].Value),
                     Convert.ToString(selectedRow.Cells["Status"].Value)
                     );
             }

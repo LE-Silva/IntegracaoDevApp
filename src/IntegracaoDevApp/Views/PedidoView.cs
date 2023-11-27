@@ -28,10 +28,35 @@ namespace IntegracaoDevApp.Views
             btnSalvar.Click += btnSalvar_Click;
             btnExcluir.Click += btnExcluir_Click;
             btnFechar.Click += btnFechar_Click;
+            btnPrimeiroPedido.Click += BtnPrimeiroPedido_Click;
+            btnUltimoPedido.Click += BtnUltimoPedido_Click;
+            btnProximo.Click += BtnProximo_Click;
+            btnAnterior.Click += BtnAnterior_Click;
 
             txtNumPedido.KeyDown += txtNumPedido_KeyDown;
             txtCdCliente.KeyDown += buscaCliente;
             txtNomeCliente.KeyDown += buscaCliente;
+        }
+
+        private void BtnAnterior_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetAnteriorPedido(txtNumPedido.Text);
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+            }
+        }
+        private void BtnProximo_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetProximoPedido(txtNumPedido.Text);
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+            }
         }
         void txtNumPedido_KeyDown(object sender, KeyEventArgs e)
         {
@@ -140,6 +165,20 @@ namespace IntegracaoDevApp.Views
             preencheCamposComDadosDoPedido();
             verificaPedidoFechado();
         }
+        void BtnUltimoPedido_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetUltimoPedido();
+            pedidoItemView1.deixaCamposEmBranco();
+            preencheCamposComDadosDoPedido();
+            verificaPedidoFechado();
+        }
+        void BtnPrimeiroPedido_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetPrimeiroPedido();
+            pedidoItemView1.deixaCamposEmBranco();
+            preencheCamposComDadosDoPedido();
+            verificaPedidoFechado();
+        }
         void alterarStatusCampos()
         {
             txtNumPedido.Enabled = !txtNumPedido.Enabled;
@@ -158,8 +197,8 @@ namespace IntegracaoDevApp.Views
             txtNumPedido.Text = _pedidoAtual.NumPedido.ToString();
             txtCdCliente.Text = _pedidoAtual.CdCliente;
             txtStatusPedido.Text = _pedidoAtual.Status;
-            dtpDtAbertura.Value = _pedidoAtual.DtAbertura;
-            //dtpDtFechamento.Value = _pedidoAtual.DtFechamento;
+            txtDtAbertura.Text = _pedidoAtual.DtAbertura.ToString();
+            txtDtFechamento.Text = _pedidoAtual.DtFechamento.ToString();
             txtNomeCliente.Text = getNomeCliente();
             preencheItensPedido();
             btnSalvar.Enabled = false;
