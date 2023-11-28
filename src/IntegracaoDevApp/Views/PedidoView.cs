@@ -37,27 +37,6 @@ namespace IntegracaoDevApp.Views
             txtCdCliente.KeyDown += buscaCliente;
             txtNomeCliente.KeyDown += buscaCliente;
         }
-
-        private void BtnAnterior_Click(object sender, EventArgs e)
-        {
-            _pedidoAtual = _pedidoAppService.GetAnteriorPedido(txtNumPedido.Text);
-            if (_pedidoAtual != null)
-            {
-                pedidoItemView1.deixaCamposEmBranco();
-                preencheCamposComDadosDoPedido();
-                verificaPedidoFechado();
-            }
-        }
-        private void BtnProximo_Click(object sender, EventArgs e)
-        {
-            _pedidoAtual = _pedidoAppService.GetProximoPedido(txtNumPedido.Text);
-            if (_pedidoAtual != null)
-            {
-                pedidoItemView1.deixaCamposEmBranco();
-                preencheCamposComDadosDoPedido();
-                verificaPedidoFechado();
-            }
-        }
         void txtNumPedido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -70,6 +49,7 @@ namespace IntegracaoDevApp.Views
                     pedidoItemView1.deixaCamposEmBranco();
                     preencheCamposComDadosDoPedido();
                     verificaPedidoFechado();
+                    btnImprimir.Enabled = true;
                 }
             }
             
@@ -168,16 +148,46 @@ namespace IntegracaoDevApp.Views
         void BtnUltimoPedido_Click(object sender, EventArgs e)
         {
             _pedidoAtual = _pedidoAppService.GetUltimoPedido();
-            pedidoItemView1.deixaCamposEmBranco();
-            preencheCamposComDadosDoPedido();
-            verificaPedidoFechado();
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+                btnImprimir.Enabled = true;
+            }
         }
         void BtnPrimeiroPedido_Click(object sender, EventArgs e)
         {
             _pedidoAtual = _pedidoAppService.GetPrimeiroPedido();
-            pedidoItemView1.deixaCamposEmBranco();
-            preencheCamposComDadosDoPedido();
-            verificaPedidoFechado();
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+                btnImprimir.Enabled = true;
+            }
+        }
+        void BtnAnterior_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetAnteriorPedido(txtNumPedido.Text);
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+                btnImprimir.Enabled = true;
+            }
+        }
+        void BtnProximo_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetProximoPedido(txtNumPedido.Text);
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+                btnImprimir.Enabled = true;
+            }
         }
         void alterarStatusCampos()
         {
