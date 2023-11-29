@@ -121,8 +121,7 @@ namespace IntegracaoDevApp.Views
                 MessageBox.Show("Não pode excluir pedido fechado!");
                 return;
             }
-            _pedidoAppService.Delete(txtNumPedido.Text);
-            pedidoItemView1._itemAppService.DeleteTodosItensPedido(txtNumPedido.Text);            
+            _pedidoAppService.Delete(txtNumPedido.Text);           
             pedidoItemView1.Enabled = false;
             pedidoItemView1.deixaCamposEmBranco();
             pedidoItemView1.limpaGrid();

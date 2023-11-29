@@ -13,6 +13,7 @@ namespace IntegracaoDevApp.Data.Repositories
 {
     public class PedidoRepository
     {
+        PedidoItemRepository _itemRepository = new PedidoItemRepository();
         public PedidoRepository() { }
 
         public int Create(Pedido entity)
@@ -40,19 +41,32 @@ namespace IntegracaoDevApp.Data.Repositories
 
             return newId;
         }
-
         public bool Delete(string numpedido)
         {
             var rowsAffected = 0;
             using (var conn = ConnectionProvider.GetConnection())
             {
-                conn.Open();
+                SqlTransaction transaction = null;
 
-                var query = "DELETE FROM PedidoDevApp WHERE NumPedido = @NumPedido";
-                var command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@NumPedido", numpedido);
+                try
+                {
+                    conn.Open();
 
-                rowsAffected = command.ExecuteNonQuery();
+                    var query = "DELETE FROM PedidoDevApp WHERE NumPedido = @NumPedido";
+                    var command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@NumPedido", numpedido);
+                    _itemRepository.DeteteTodosItensPedido(numpedido);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    if (transaction != null) transaction.Rollback();
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
 
             return rowsAffected > 0;
@@ -62,20 +76,37 @@ namespace IntegracaoDevApp.Data.Repositories
             var rowsAffected = 0;
             using (var conn = ConnectionProvider.GetConnection())
             {
-                conn.Open();
+                SqlTransaction transaction = null;
 
-                var query = "UPDATE PedidoDevApp " +
-                    " SET Status = @NovoStatus, DtFechamento = @DtFechamento" +
-                    " WHERE NumPedido = @NumPedido";
-                var command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@NumPedido", numpedido);
-                command.Parameters.AddWithValue("@NovoStatus", novoStatus);
-                if (novoStatus == "F")
-                    command.Parameters.AddWithValue("@DtFechamento", DateTime.Now);
-                else
-                    command.Parameters.AddWithValue("@DtFechamento", DBNull.Value);
+                try
+                {
+                    conn.Open();
 
-                rowsAffected = command.ExecuteNonQuery();
+                    transaction = conn.BeginTransaction();
+
+                    var query = "UPDATE PedidoDevApp " +
+                                " SET Status = @NovoStatus, DtFechamento = @DtFechamento" +
+                                " WHERE NumPedido = @NumPedido";
+                    var command = new SqlCommand(query, conn, transaction);
+                    command.Parameters.AddWithValue("@NumPedido", numpedido);
+                    command.Parameters.AddWithValue("@NovoStatus", novoStatus);
+                    if (novoStatus == "F")
+                        command.Parameters.AddWithValue("@DtFechamento", DateTime.Now);
+                    else
+                        command.Parameters.AddWithValue("@DtFechamento", DBNull.Value);
+
+                    rowsAffected = command.ExecuteNonQuery();
+
+                    transaction.Commit();
+                }
+                catch
+                {
+                    if (transaction != null) transaction.Rollback();
+                }
+                finally
+                {
+                    conn.Close();
+                }
             }
 
             return rowsAffected > 0;
