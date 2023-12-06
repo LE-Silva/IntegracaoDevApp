@@ -2,7 +2,6 @@
 using IntegracaoDevApp.Domain.Core;
 using IntegracaoDevApp.Domain.Entities;
 using IntegracaoDevApp.Domain.Entities.PedidoItem;
-using MyManagementApp.Data;
 using System;
 using System.Collections.Generic;
 using System.Data;

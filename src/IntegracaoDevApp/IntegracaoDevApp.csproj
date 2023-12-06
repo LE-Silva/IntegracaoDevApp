@@ -33,6 +33,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dataplace.Core.Infra.Runners, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\SPT-LUIS\Users\Administrator\Desktop\Dataplace ERP\Packs\SYMFP2024R1\Install\Dataplace.Core.Infra.Runners.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Core.Lib">
+      <HintPath>\\SPT-LUIS\Users\Administrator\Desktop\Dataplace ERP\Packs\SYMFP2024R1\Install\Dataplace.Core.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Core.Searchs">
+      <HintPath>\\SPT-LUIS\Users\Administrator\Desktop\Dataplace ERP\Packs\SYMFP2024R1\Install\Dataplace.Core.Searchs.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Core.win">
+      <HintPath>\\SPT-LUIS\Users\Administrator\Desktop\Dataplace ERP\Packs\SYMFP2024R1\Install\Dataplace.Core.win.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Resources">
+      <HintPath>\\SPT-LUIS\Users\Administrator\Desktop\Dataplace ERP\Packs\SYMFP2024R1\Install\Dataplace.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="dp.library.05">
+      <HintPath>U:\SYMFP2024R1\Install\dp.library.05.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -72,6 +91,12 @@
     <Compile Include="SubViews\PesquisaProduto.Designer.cs">
       <DependentUpon>PesquisaProduto.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubViews\ReportView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\ReportView.Designer.cs">
+      <DependentUpon>ReportView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClienteWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +127,13 @@
     <Compile Include="Views\ProdutoWindow.Designer.cs">
       <DependentUpon>ProdutoWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -144,6 +176,9 @@
     <EmbeddedResource Include="Views\ProdutoWindow.resx">
       <DependentUpon>ProdutoWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -159,7 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IntegracaoDevApp.Application\IntegracaoDevApp.Application.csproj">
-      <Project>{87FED233-217F-4C0C-998E-40CCE1F0D389}</Project>
+      <Project>{87fed233-217f-4c0c-998e-40cce1f0d389}</Project>
       <Name>IntegracaoDevApp.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\IntegracaoDevApp.Data\IntegracaoDevApp.Data.csproj">
@@ -167,10 +202,9 @@
       <Name>IntegracaoDevApp.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\IntegracaoDevApp.Domain\IntegracaoDevApp.Domain.csproj">
-      <Project>{AC989F03-7EE5-4DCE-84FC-B1997EBA0C07}</Project>
+      <Project>{ac989f03-7ee5-4dce-84fc-b1997eba0c07}</Project>
       <Name>IntegracaoDevApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

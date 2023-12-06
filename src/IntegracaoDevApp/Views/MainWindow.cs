@@ -1,4 +1,5 @@
 ﻿using IntegracaoDevApp.Domain.Entities;
+using IntegracaoDevApp.SubViews;
 using IntegracaoDevApp.Views;
 using System;
 using System.Collections.Generic;
@@ -23,9 +24,15 @@ namespace IntegracaoDevApp
             cadastrarClientesToolStripMenuItem.Click += cadastrarClientesToolStripMenuItem_Click;
             cadastrarProdutosToolStripMenuItem.Click += cadastrarProdutosToolStripMenuItem_Click;
             pedidoToolStripMenuItem.Click += pedidoToolStripMenuItem_Click;
+            impressãoToolStripMenuItem.Click += ImpressãoToolStripMenuItem_Click;
 
             tslBd.Text = "SPT_LEJ_DbNutAg";
             tslUser.Text = usuarioLogado.Username;
+        }
+
+        private void ImpressãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var impressaoJanela = new ReportView();
         }
 
         void cadastrarClientesToolStripMenuItem_Click(object sender, EventArgs e)
