@@ -29,24 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report));
-            this.reportView1 = new IntegracaoDevApp.SubViews.ReportView();
             this.SuspendLayout();
-            // 
-            // reportView1
-            // 
-            this.reportView1.BackColor = System.Drawing.SystemColors.Control;
-            this.reportView1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.reportView1.DotNetContainer = false;
-            this.reportView1.KeyPreview = false;
-            this.reportView1.Location = new System.Drawing.Point(0, 0);
-            this.reportView1.Name = "reportView1";
-            this.reportView1.OpenModal = false;
-            this.reportView1.Parameters = ((System.Collections.Generic.IDictionary<string, object>)(resources.GetObject("reportView1.Parameters")));
-            this.reportView1.Size = new System.Drawing.Size(600, 400);
-            this.reportView1.StartPositionControl = null;
-            this.reportView1.TabIndex = 0;
-            this.reportView1.TabOrderScheme = dpLibrary05.TabOrderManager.TabScheme.None;
-            this.reportView1.WindowSize = dpLibrary05.Infrastructure.UserControls.ucSymGen_ReportDialog.WindowSizeEnum.D590X415;
             // 
             // Report
             // 
@@ -60,7 +43,5 @@
         }
 
         #endregion
-
-        private SubViews.ReportView reportView1;
     }
 }

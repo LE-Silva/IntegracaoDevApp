@@ -72,8 +72,8 @@
             // 
             // pedidoToolStripMenuItem
             // 
-            resources.ApplyResources(this.pedidoToolStripMenuItem, "pedidoToolStripMenuItem");
             this.pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
+            resources.ApplyResources(this.pedidoToolStripMenuItem, "pedidoToolStripMenuItem");
             // 
             // impressãoToolStripMenuItem
             // 

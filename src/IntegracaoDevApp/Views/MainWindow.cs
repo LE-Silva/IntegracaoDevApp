@@ -33,6 +33,7 @@ namespace IntegracaoDevApp
         private void ImpressãoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var impressaoJanela = new ReportView();
+            impressaoJanela.Visible = true;
         }
 
         void cadastrarClientesToolStripMenuItem_Click(object sender, EventArgs e)

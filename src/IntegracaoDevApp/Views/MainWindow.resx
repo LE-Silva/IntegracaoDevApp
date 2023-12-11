@@ -133,10 +133,6 @@
   <data name="cadastrarProdutosToolStripMenuItem.Text" xml:space="preserve">
     <value>Cadastrar Produtos</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="pedidoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="pedidoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>180, 22</value>
   </data>
@@ -161,6 +157,7 @@
   <data name="msMenuSuperior.Size" type="System.Drawing.Size, System.Drawing">
     <value>800, 24</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="msMenuSuperior.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
