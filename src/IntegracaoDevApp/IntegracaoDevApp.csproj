@@ -33,6 +33,30 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="C1.Win.C1Command.4">
+      <HintPath>U:\TechDev\Install\C1.Win.C1Command.4.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Win.C1FlexGrid.4">
+      <HintPath>U:\TechDev\Install\C1.Win.C1FlexGrid.4.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Win.C1Input.4">
+      <HintPath>U:\TechDev\Install\C1.Win.C1Input.4.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Win.C1TrueDBGrid.4">
+      <HintPath>U:\TechDev\Install\C1.Win.C1TrueDBGrid.4.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Core.Lib">
+      <HintPath>U:\TechDev\Install\Dataplace.Core.Lib.dll</HintPath>
+    </Reference>
+    <Reference Include="Dataplace.Core.win">
+      <HintPath>U:\TechDev\Install\Dataplace.Core.win.dll</HintPath>
+    </Reference>
+    <Reference Include="dp.library.01">
+      <HintPath>U:\TechDev\Install\dp.library.01.dll</HintPath>
+    </Reference>
+    <Reference Include="dp.library.05">
+      <HintPath>U:\TechDev\Install\dp.library.05.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,11 +78,23 @@
     <Compile Include="SubViews\PedidoItemView.Designer.cs">
       <DependentUpon>PedidoItemView.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubViews\PedidoRelatorio.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\PedidoRelatorio.Designer.cs">
+      <DependentUpon>PedidoRelatorio.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubViews\PesquisaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SubViews\PesquisaCliente.Designer.cs">
       <DependentUpon>PesquisaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubViews\PesquisaFoneticaPedido.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SubViews\PesquisaFoneticaPedido.Designer.cs">
+      <DependentUpon>PesquisaFoneticaPedido.cs</DependentUpon>
     </Compile>
     <Compile Include="SubViews\PesquisaPedido.cs">
       <SubType>Form</SubType>
@@ -71,6 +107,10 @@
     </Compile>
     <Compile Include="SubViews\PesquisaProduto.Designer.cs">
       <DependentUpon>PesquisaProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubViews\Search.cs" />
+    <Compile Include="SubViews\Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ClienteWindow.cs">
       <SubType>Form</SubType>
@@ -102,6 +142,7 @@
     <Compile Include="Views\ProdutoWindow.Designer.cs">
       <DependentUpon>ProdutoWindow.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -113,6 +154,9 @@
     </Compile>
     <EmbeddedResource Include="SubViews\PedidoItemView.resx">
       <DependentUpon>PedidoItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubViews\PedidoRelatorio.resx">
+      <DependentUpon>PedidoRelatorio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SubViews\PesquisaCliente.resx">
       <DependentUpon>PesquisaCliente.cs</DependentUpon>
