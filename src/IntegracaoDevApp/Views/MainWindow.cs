@@ -1,4 +1,5 @@
 ﻿using IntegracaoDevApp.Domain.Entities;
+using IntegracaoDevApp.SubViews;
 using IntegracaoDevApp.Views;
 using IntegracaoDevApp.SubViews;
 using System;
@@ -24,15 +25,26 @@ namespace IntegracaoDevApp
             cadastrarClientesToolStripMenuItem.Click += cadastrarClientesToolStripMenuItem_Click;
             cadastrarProdutosToolStripMenuItem.Click += cadastrarProdutosToolStripMenuItem_Click;
             pedidoToolStripMenuItem.Click += pedidoToolStripMenuItem_Click;
+<<<<<<< HEAD
             relatorioToolStripMenuItem.Click += RelatorioToolStripMenuItem_Click;
+=======
+            impressãoToolStripMenuItem.Click += ImpressãoToolStripMenuItem_Click;
+>>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
 
             tslBd.Text = "SPT_LEJ_DbNutAg";
             tslUser.Text = usuarioLogado.Username;
         }
 
+<<<<<<< HEAD
         private void RelatorioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Dataplace.Core.win.Views.Managers.ViewManager.ShowViewOnForm<IntegracaoDevApp_RelatorioView>(captionForm: "Relatório");
+=======
+        private void ImpressãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var impressaoJanela = new ReportView();
+            impressaoJanela.Visible = true;
+>>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
         }
 
         void cadastrarClientesToolStripMenuItem_Click(object sender, EventArgs e)

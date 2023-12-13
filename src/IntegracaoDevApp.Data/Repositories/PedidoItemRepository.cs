@@ -36,13 +36,28 @@ namespace IntegracaoDevApp.Data.Repositories
             var rowsAffected = 0;
             using (var conn = ConnectionProvider.GetConnection())
             {
-                conn.Open();
+                SqlTransaction transaction = null;
 
-                var query = "DELETE FROM PedidoItemDevApp WHERE Seq = @Seq";
-                var command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@Seq", seq);
+                try
+                {
+                    conn.Open();
+                    var query = "DELETE FROM PedidoItemDevApp WHERE Seq = @Seq";
+                    var command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@Seq", seq);
 
-                rowsAffected = command.ExecuteNonQuery();
+                    rowsAffected = command.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch
+                {
+                    if (transaction != null)
+                        transaction.Rollback();
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                
             }
 
             return rowsAffected > 0;
@@ -52,13 +67,25 @@ namespace IntegracaoDevApp.Data.Repositories
             var rowsAffected = 0;
             using (var conn = ConnectionProvider.GetConnection())
             {
-                conn.Open();
+                SqlTransaction transaction = null;
 
-                var query = "DELETE FROM PedidoItemDevApp WHERE NumPedido = @NumPedido";
-                var command = new SqlCommand(query, conn);
-                command.Parameters.AddWithValue("@NumPedido", numpedido);
+                try
+                {
+                    conn.Open();
 
-                rowsAffected = command.ExecuteNonQuery();
+                    var query = "DELETE FROM PedidoItemDevApp WHERE NumPedido = @NumPedido";
+                    var command = new SqlCommand(query, conn);
+                    command.Parameters.AddWithValue("@NumPedido", numpedido);
+
+                    rowsAffected = command.ExecuteNonQuery();
+                }
+                catch
+                {
+                    if (transaction != null)
+                        transaction.Rollback();
+                }
+                finally { conn.Close(); }
+                
             }
 
             return rowsAffected > 0;

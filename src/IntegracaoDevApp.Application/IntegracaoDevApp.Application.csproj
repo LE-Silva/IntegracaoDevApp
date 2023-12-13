@@ -50,11 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IntegracaoDevApp.Data\IntegracaoDevApp.Data.csproj">
-      <Project>{A8DE14D3-2B37-4C4A-9D23-9A99C1BC1BE9}</Project>
+      <Project>{a8de14d3-2b37-4c4a-9d23-9a99c1bc1be9}</Project>
       <Name>IntegracaoDevApp.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\IntegracaoDevApp.Domain\IntegracaoDevApp.Domain.csproj">
-      <Project>{AC989F03-7EE5-4DCE-84FC-B1997EBA0C07}</Project>
+      <Project>{ac989f03-7ee5-4dce-84fc-b1997eba0c07}</Project>
       <Name>IntegracaoDevApp.Domain</Name>
     </ProjectReference>
   </ItemGroup>
