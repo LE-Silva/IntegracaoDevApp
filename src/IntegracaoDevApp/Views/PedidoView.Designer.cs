@@ -252,11 +252,7 @@ namespace IntegracaoDevApp.Views
             this.btnPrimeiroPedido.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPrimeiroPedido.Name = "btnPrimeiroPedido";
             this.btnPrimeiroPedido.Size = new System.Drawing.Size(23, 22);
-<<<<<<< HEAD
             this.btnPrimeiroPedido.Text = "toolStripButton1";
-=======
-            this.btnPrimeiroPedido.Text = "Primeiro";
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             // 
             // btnAnterior
             // 
@@ -265,11 +261,7 @@ namespace IntegracaoDevApp.Views
             this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(23, 22);
-<<<<<<< HEAD
             this.btnAnterior.Text = "toolStripButton1";
-=======
-            this.btnAnterior.Text = "Anterior";
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             // 
             // btnProximo
             // 
@@ -278,11 +270,7 @@ namespace IntegracaoDevApp.Views
             this.btnProximo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnProximo.Name = "btnProximo";
             this.btnProximo.Size = new System.Drawing.Size(23, 22);
-<<<<<<< HEAD
             this.btnProximo.Text = "toolStripButton1";
-=======
-            this.btnProximo.Text = "Proximo";
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             // 
             // btnUltimoPedido
             // 
@@ -291,11 +279,7 @@ namespace IntegracaoDevApp.Views
             this.btnUltimoPedido.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnUltimoPedido.Name = "btnUltimoPedido";
             this.btnUltimoPedido.Size = new System.Drawing.Size(23, 22);
-<<<<<<< HEAD
             this.btnUltimoPedido.Text = "toolStripButton1";
-=======
-            this.btnUltimoPedido.Text = "Ultimo";
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             // 
             // tssPedido
             // 

@@ -37,6 +37,27 @@ namespace IntegracaoDevApp.Views
             txtCdCliente.KeyDown += buscaCliente;
             txtNomeCliente.KeyDown += buscaCliente;
         }
+
+        private void BtnAnterior_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetAnteriorPedido(txtNumPedido.Text);
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+            }
+        }
+        private void BtnProximo_Click(object sender, EventArgs e)
+        {
+            _pedidoAtual = _pedidoAppService.GetProximoPedido(txtNumPedido.Text);
+            if (_pedidoAtual != null)
+            {
+                pedidoItemView1.deixaCamposEmBranco();
+                preencheCamposComDadosDoPedido();
+                verificaPedidoFechado();
+            }
+        }
         void txtNumPedido_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -49,7 +70,6 @@ namespace IntegracaoDevApp.Views
                     pedidoItemView1.deixaCamposEmBranco();
                     preencheCamposComDadosDoPedido();
                     verificaPedidoFechado();
-                    btnImprimir.Enabled = true;
                 }
             }
             
@@ -121,7 +141,8 @@ namespace IntegracaoDevApp.Views
                 MessageBox.Show("Não pode excluir pedido fechado!");
                 return;
             }
-            _pedidoAppService.Delete(txtNumPedido.Text);           
+            _pedidoAppService.Delete(txtNumPedido.Text);
+            pedidoItemView1._itemAppService.DeleteTodosItensPedido(txtNumPedido.Text);            
             pedidoItemView1.Enabled = false;
             pedidoItemView1.deixaCamposEmBranco();
             pedidoItemView1.limpaGrid();
@@ -147,46 +168,16 @@ namespace IntegracaoDevApp.Views
         void BtnUltimoPedido_Click(object sender, EventArgs e)
         {
             _pedidoAtual = _pedidoAppService.GetUltimoPedido();
-            if (_pedidoAtual != null)
-            {
-                pedidoItemView1.deixaCamposEmBranco();
-                preencheCamposComDadosDoPedido();
-                verificaPedidoFechado();
-                btnImprimir.Enabled = true;
-            }
+            pedidoItemView1.deixaCamposEmBranco();
+            preencheCamposComDadosDoPedido();
+            verificaPedidoFechado();
         }
         void BtnPrimeiroPedido_Click(object sender, EventArgs e)
         {
             _pedidoAtual = _pedidoAppService.GetPrimeiroPedido();
-            if (_pedidoAtual != null)
-            {
-                pedidoItemView1.deixaCamposEmBranco();
-                preencheCamposComDadosDoPedido();
-                verificaPedidoFechado();
-                btnImprimir.Enabled = true;
-            }
-        }
-        void BtnAnterior_Click(object sender, EventArgs e)
-        {
-            _pedidoAtual = _pedidoAppService.GetAnteriorPedido(txtNumPedido.Text);
-            if (_pedidoAtual != null)
-            {
-                pedidoItemView1.deixaCamposEmBranco();
-                preencheCamposComDadosDoPedido();
-                verificaPedidoFechado();
-                btnImprimir.Enabled = true;
-            }
-        }
-        void BtnProximo_Click(object sender, EventArgs e)
-        {
-            _pedidoAtual = _pedidoAppService.GetProximoPedido(txtNumPedido.Text);
-            if (_pedidoAtual != null)
-            {
-                pedidoItemView1.deixaCamposEmBranco();
-                preencheCamposComDadosDoPedido();
-                verificaPedidoFechado();
-                btnImprimir.Enabled = true;
-            }
+            pedidoItemView1.deixaCamposEmBranco();
+            preencheCamposComDadosDoPedido();
+            verificaPedidoFechado();
         }
         void alterarStatusCampos()
         {

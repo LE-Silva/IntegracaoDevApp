@@ -34,18 +34,11 @@
             this.cadastrarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-<<<<<<< HEAD
-=======
-            this.impressãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             this.tsBottom = new System.Windows.Forms.ToolStrip();
             this.tslBd = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tslUser = new System.Windows.Forms.ToolStripLabel();
-<<<<<<< HEAD
             this.relatorioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-=======
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             this.msMenuSuperior.SuspendLayout();
             this.tsBottom.SuspendLayout();
             this.SuspendLayout();
@@ -63,11 +56,7 @@
             this.cadastrarClientesToolStripMenuItem,
             this.cadastrarProdutosToolStripMenuItem,
             this.pedidoToolStripMenuItem,
-<<<<<<< HEAD
             this.relatorioToolStripMenuItem});
-=======
-            this.impressãoToolStripMenuItem});
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             resources.ApplyResources(this.arquivoToolStripMenuItem, "arquivoToolStripMenuItem");
             // 
@@ -86,14 +75,6 @@
             this.pedidoToolStripMenuItem.Name = "pedidoToolStripMenuItem";
             resources.ApplyResources(this.pedidoToolStripMenuItem, "pedidoToolStripMenuItem");
             // 
-<<<<<<< HEAD
-=======
-            // impressãoToolStripMenuItem
-            // 
-            this.impressãoToolStripMenuItem.Name = "impressãoToolStripMenuItem";
-            resources.ApplyResources(this.impressãoToolStripMenuItem, "impressãoToolStripMenuItem");
-            // 
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             // tsBottom
             // 
             resources.ApplyResources(this.tsBottom, "tsBottom");
@@ -119,14 +100,11 @@
             this.tslUser.Name = "tslUser";
             resources.ApplyResources(this.tslUser, "tslUser");
             // 
-<<<<<<< HEAD
             // relatorioToolStripMenuItem
             // 
             this.relatorioToolStripMenuItem.Name = "relatorioToolStripMenuItem";
             resources.ApplyResources(this.relatorioToolStripMenuItem, "relatorioToolStripMenuItem");
             // 
-=======
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
             // MainWindow
             // 
             this.AllowDrop = true;
@@ -159,10 +137,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel tslUser;
         private System.Windows.Forms.ToolStripMenuItem pedidoToolStripMenuItem;
-<<<<<<< HEAD
         private System.Windows.Forms.ToolStripMenuItem relatorioToolStripMenuItem;
-=======
-        private System.Windows.Forms.ToolStripMenuItem impressãoToolStripMenuItem;
->>>>>>> f7f14e570a215d98ff7ef34e5505076c7016496b
     }
 }
